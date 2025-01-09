@@ -1,28 +1,63 @@
-import React from 'react';
+'use client'
+import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 
 const WorkWithUsLayout = () => {
+  const [scrollY, setScrollY] = useState(0);
+
+  // Track scroll position
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrollY(window.scrollY);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    // Cleanup on unmount
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // Calculate the vertical shift for images based on scroll
+  const imageShiftMain = scrollY * 0.05; // Slight vertical shift for the main image (adjust the factor)
+  const imageShiftSmall = scrollY * 0.05; // Slight vertical shift for the small image (adjust the factor)
+
   return (
-    <div className="h-[40rem] flex flex-col md:flex-row bg-white">
+    <div className="h-[100vh] flex flex-col md:flex-row bg-white">
       {/* Left Column - Images */}
-      <div className="w-full md:w-1/2 bg-white flex items-center relative">
+      <div className="w-full md:w-1/2 bg-white flex items-center relative ml-20">
         {/* Main image */}
+      <div 
+        className="relative transition-all duration-700 ease-in-out transform"
+        style={{
+          transform: `translateY(${imageShiftMain}px)`, // Main image moves up/down
+          height: '85vh', // Ensure the image fits the screen height
+          width: '80vw',  // Ensure the image takes up the full screen width
+        }}
+      >
         <Image 
           src="/tg.jpg"
           alt="Community inclusion"
-          className="w-11/12 h-full object-cover"
+          className="w-full h-full object-cover"
           width={1000}
           height={1000}
         />
+      </div>
 
         {/* Small overlapping image */}
-        <div className="absolute right-0 top-1/4 z-10" style={{ transform: 'translateX(36%)' }}>
+        <div 
+          className="absolute right-0 top-2/4 z-10 transition-transform duration-700 ease-in-out"
+          style={{
+            transform: `translateY(-${imageShiftSmall}px) translateX(40%)`, // Small image moves up/down and slightly right
+            objectFit: 'contain', // Ensures the small image is fully visible without cutting horizontally
+          }}
+        >
           <Image 
             src="/cmp.jpg"
             alt="Accessibility features"
             className="w-72 h-96 object-cover shadow-xl"
-          width={1000}
-          height={1000}/>
+            width={1000}
+            height={1000}
+          />
         </div>
       </div>
 

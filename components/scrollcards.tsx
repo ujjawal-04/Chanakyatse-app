@@ -1,61 +1,74 @@
 import React from 'react';
 import Image from 'next/image';
+import { ArrowUpRight } from 'lucide-react';
 
 const ScrollableCards = () => {
   const items = [
     {
-      title: "Awareness Campaigns",
-      description: "We conduct campaigns to educate individuals and boost public awareness about disabilities and accessibility guidelines.",
+      title: "Services",
+      description: "Comprehensive accessibility solutions, digital inclusion consulting, and assistive technology implementation for organizations.",
       image: "/lw.jpeg"
     },
     {
-      title: "Engaging Competitions",
-      description: "Showcase your talents in our competitions where we create a platform to support budding disabled artists and rising influencers.",
+      title: "About Us",
+      description: "Dedicated team of accessibility experts committed to creating an inclusive digital world through innovation and advocacy.",
       image: "/lw.jpeg"
     },
     {
-      title: "Intriguing Events",
-      description: "Join us in one of our digital events where we facilitate conversations and celebrate the achievements of the disabled community.",
+      title: "News",
+      description: "Stay updated with the latest developments in accessibility technology, policy changes, and industry innovations.",
       image: "/lw.jpeg"
     },
     {
-      title: "Informative Posts",
-      description: "A4E aims to cover every topic in the realm of disability, accessibility and inclusion – from A to Z – in the form of engaging posts.",
+      title: "Articles",
+      description: "In-depth insights, best practices, and expert perspectives on digital accessibility and inclusive design.",
       image: "/lw.jpeg"
     },
     {
-      title: "Accessibility Solutions",
-      description: "We provide and implement comprehensive solutions to improve accessibility across digital platforms.",
+      title: "Case Studies",
+      description: "Real-world examples of successful accessibility implementations and their impact on organizations and users.",
       image: "/lw.jpeg"
     }
   ];
 
   return (
-    <div className="w-full bg-white">
-      <div className="overflow-x-auto">
-        <div className="flex pl-16 space-x-8 pb-6">
+    <div className="w-full bg-white px-4 md:px-8">
+      <div className="scrollbar-hide overflow-x-auto -mx-4 md:-mx-8">
+        <div className="flex space-x-8 pb-6 px-4 md:px-8">
           {items.map((item, index) => (
             <div
               key={index}
-              className="flex-none w-96 transform transition-all duration-500 hover:-translate-y-2 group"
+              className="flex-none w-72 md:w-96 transform transition-all duration-500 hover:-translate-y-2 group cursor-pointer"
             >
-              <div className="overflow-hidden">
+              <div className="relative aspect-[4/3] overflow-hidden border-2 border-gray-300">
                 <Image
                   src={item.image}
                   alt={item.title}
-                  className="w-full h-96 object-cover transition-transform duration-500 group-hover:scale-110"
-                width={1000}
-                height={1000}/>
+                  className="object-cover w-full h-full"
+                  layout="fill"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent">
+                  <div className="absolute bottom-0 left-0 right-0 p-4">
+                    <div className="flex items-center justify-between">
+                      <h3 className="text-xl md:text-3xl font-bold text-white mb-2">
+                        {item.title}
+                      </h3>
+                      <ArrowUpRight 
+                        className="text-white opacity-0 transform translate-x-4 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-0" 
+                        size={24}
+                      />
+                    </div>
+                    <div className="flex flex-col space-y-2">
+                      <p className="text-sm md:text-base text-white opacity-0 transform translate-y-4 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0">
+                        {item.description}
+                      </p>
+                      <span className="text-white font-medium opacity-0 transform translate-y-4 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0">
+                        Read More
+                      </span>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <div className="relative inline-block">
-                <h3 className="text-xl font-bold mt-4 mb-2 text-black">
-                  {item.title}
-                </h3>
-                <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-black transition-all duration-500 group-hover:w-full"></div>
-              </div>
-              <p className="text-gray-600 text-sm">
-                {item.description}
-              </p>
             </div>
           ))}
         </div>
