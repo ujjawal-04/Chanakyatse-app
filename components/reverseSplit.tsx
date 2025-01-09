@@ -11,6 +11,8 @@ const WorkWithUsLayout = () => {
           src="/tg.jpg"
           alt="Community inclusion"
           className="w-11/12 h-full object-cover"
+          width={1000}
+          height={1000}
         />
 
         {/* Small overlapping image */}
@@ -19,7 +21,8 @@ const WorkWithUsLayout = () => {
             src="/cmp.jpg"
             alt="Accessibility features"
             className="w-72 h-96 object-cover shadow-xl"
-          />
+          width={1000}
+          height={1000}/>
         </div>
       </div>
 

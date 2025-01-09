@@ -44,7 +44,8 @@ const ScrollableCards = () => {
                   src={item.image}
                   alt={item.title}
                   className="w-full h-96 object-cover transition-transform duration-500 group-hover:scale-110"
-                />
+                width={1000}
+                height={1000}/>
               </div>
               <div className="relative inline-block">
                 <h3 className="text-xl font-bold mt-4 mb-2 text-black">
