@@ -41,7 +41,7 @@ const SplitLayout = () => {
           }}
         >
           <Image
-            src="/1.avif"
+            src="/2.avif"
             alt="logo"
             className="w-36 h-44 md:w-64 md:h-96 shadow-xl rounded-lg transition-all duration-700 ease-in-out"
             width={1000}
@@ -58,7 +58,7 @@ const SplitLayout = () => {
           }}
         >
           <Image
-            src="/2.avif"
+            src="/1.avif"
             alt="founder"
             className="w-full h-full object-contain rounded-lg"
             width={1000}
