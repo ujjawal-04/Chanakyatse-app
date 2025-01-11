@@ -63,7 +63,7 @@ const SplitLayout = () => {
           variants={textVariants}
           className="text-gray-600 mb-12 text-lg leading-relaxed max-w-xl"
         >
-          Our expertise spans incorporation guidance, M&A facilitation, strategic restructuring, and comprehensive legal support including dealing with intellectual property rights disputes and registration. Empower your business with our seasoned team, ensuring sustained growth and success in today's dynamic marketplace.
+          Our expertise spans incorporation guidance, M&A facilitation, strategic restructuring, and comprehensive legal support including dealing with intellectual property rights disputes and registration. Empower your business with our seasoned team, ensuring sustained growth and success in today&apos;s dynamic marketplace.
         </motion.p>
         
         <motion.div
