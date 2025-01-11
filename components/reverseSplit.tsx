@@ -19,7 +19,7 @@ const SplitLayout = () => {
   }, [])
 
   const imageShiftMain = scrollY * 0.03
-  const imageShiftSmall = scrollY * 0.03
+  const imageShiftSmall = scrollY * 0.02
 
   const textVariants = {
     hidden: { opacity: 0, y: 20 },
@@ -37,11 +37,11 @@ const SplitLayout = () => {
         <div 
           className="absolute right-0 top-1/3 md:top-1/3 z-10 transition-transform duration-700 ease-in-out"
           style={{
-            transform: `translateY(-${imageShiftSmall}px) translateX(10%)`
+            transform: `translateY(-${imageShiftSmall}px) translateX(5%)`
           }}
         >
           <Image
-            src="/2.avif"
+            src="/1.avif"
             alt="logo"
             className="w-36 h-44 md:w-64 md:h-96 shadow-xl rounded-lg transition-all duration-700 ease-in-out"
             width={1000}
@@ -50,15 +50,15 @@ const SplitLayout = () => {
         </div>
 
         <div 
-          className="relative transition-all duration-700 ease-in-out transform"
+          className="relative transition-all duration-700 ease-in-out transform mr-20"
           style={{
             transform: `translateY(${imageShiftMain}px)`, 
-            height: '80vh',
+            height: '90vh',
             width: '100%',
           }}
         >
           <Image
-            src="/1.avif"
+            src="/2.avif"
             alt="founder"
             className="w-full h-full object-contain rounded-lg"
             width={1000}

@@ -18,8 +18,8 @@ const SplitLayout = () => {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  const imageShiftMain = scrollY * 0.02
-  const imageShiftSmall = scrollY * 0.03
+  const imageShiftMain = scrollY * 0.05
+  const imageShiftSmall = scrollY * 0.05
 
   const textVariants = {
     hidden: { opacity: 0, y: 20 },

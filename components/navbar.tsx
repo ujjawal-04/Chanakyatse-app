@@ -1,24 +1,48 @@
-'use client'
-
-import { useState, useEffect } from 'react'
+"use client"
+import { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { Button } from '@/components/ui/button'
-import { Menu, X } from 'lucide-react'
+import { Menu, X, ChevronDown } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
-const navItems = [
+type NavItem = {
+  name: string
+  href: string
+  dropdown?: { name: string; href: string }[]
+}
+
+const navItems: NavItem[] = [
   { name: 'HOME', href: '/' },
   { name: 'ABOUT US', href: '/about' },
   { name: 'SERVICES', href: '/services' },
-  { name: 'ASSOCIATIONS', href: '/associations' },
-  { name: 'RESOURCES', href: '/resources' },
+  {
+    name: 'ASSOCIATIONS',
+    href: '#',
+    dropdown: [
+      { name: 'Adv. Bindu S. Chettur', href: 'https://binduschettur.com/' },
+      { name: 'MSA', href: 'https://binduschettur.com/mohamed-salman-advocate-legal-consultants/' },
+      { name: 'Lamer Capital Ltd', href: 'https://chanakyatse.com/lamer-capital-ltd/' },
+    ],
+  },
+  {
+    name: 'RESOURCES',
+    href: '#',
+    dropdown: [
+      { name: 'News', href: '/news' },
+      { name: 'Case Studies', href: '/case-studies' },
+      { name: 'Articles', href: '/articles' },
+    ],
+  },
   { name: 'JOIN US', href: '/join' },
 ]
 
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-  
+  const [openDropdown, setOpenDropdown] = useState<string | null>(null)
+  const dropdownRefs = useRef<{ [key: string]: HTMLDivElement | null }>({})
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null)
+
   useEffect(() => {
     if (mobileMenuOpen) {
       document.body.style.overflow = 'hidden'
@@ -30,31 +54,90 @@ export default function Navbar() {
     }
   }, [mobileMenuOpen])
 
+  const handleMouseEnter = (name: string) => {
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current)
+    }
+    setOpenDropdown(name)
+  }
+
+  const handleMouseLeave = () => {
+    timeoutRef.current = setTimeout(() => {
+      setOpenDropdown(null)
+    }, 100)
+  }
+
+  const toggleDropdown = (name: string) => {
+    setOpenDropdown(openDropdown === name ? null : name)
+  }
+
+  const renderNavItem = (item: NavItem, mobile = false) => {
+    if (item.dropdown) {
+      return (
+        <div
+          key={item.name}
+          className={`relative ${mobile ? 'w-full' : ''}`}
+          onMouseEnter={() => handleMouseEnter(item.name)} // Use name directly here
+          onMouseLeave={handleMouseLeave} // Removed redundant argument
+        >
+          <button
+            className={`flex items-center ${mobile ? 'w-full py-3 text-base font-medium border-b border-gray-200' : 'text-sm font-medium'} hover:text-primary transition-colors`}
+            onClick={() => mobile && toggleDropdown(item.name)}
+          >
+            {item.name}
+            <ChevronDown className={`ml-1 h-4 w-4 transition-transform ${openDropdown === item.name ? 'rotate-180' : ''}`} />
+          </button>
+          {(openDropdown === item.name || (!mobile && openDropdown === item.name)) && (
+            <div
+              ref={(el) => { dropdownRefs.current[item.name] = el }}
+              className={`${mobile ? 'mt-2 ml-4' : 'absolute left-0 mt-2 w-48 bg-white shadow-lg rounded-md overflow-hidden'}`}
+              onMouseEnter={() => handleMouseEnter(item.name)} // Use name directly here
+              onMouseLeave={handleMouseLeave} // Removed redundant argument
+            >
+              {item.dropdown.map((subItem) => (
+                <Link
+                  key={subItem.name}
+                  href={subItem.href}
+                  className={`block ${mobile ? 'py-2' : 'px-4 py-2'} text-sm hover:bg-gray-100 transition-colors`}
+                  onClick={() => mobile && setMobileMenuOpen(false)}
+                >
+                  {subItem.name}
+                </Link>
+              ))}
+            </div>
+          )}
+        </div>
+      )
+    }
+    return (
+      <Link
+        key={item.name}
+        href={item.href}
+        className={`${mobile ? 'block py-3 text-base font-medium border-b border-gray-200' : 'text-sm font-medium'} hover:text-primary transition-colors`}
+        onClick={() => mobile && setMobileMenuOpen(false)}
+      >
+        {item.name}
+      </Link>
+    )
+  }
+
   return (
     <>
       <header className="fixed top-0 w-full bg-white backdrop-blur-sm z-40 border-b">
-        <div className="container mx-auto px-12">
-          <div className="flex items-center justify-between h-20">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-16 sm:h-20">
             <Link href="/" className="flex items-center space-x-2">
               <Image
                 src="/logo.jpg"
                 alt="Chanakyatse Consultancy"
                 width={250}
                 height={160}
-                className="w-30 h-20"
+                className="w-auto h-12 sm:h-16"
               />
             </Link>
             
-            <nav className="hidden md:flex items-center space-x-8">
-              {navItems.map((item) => (
-                <Link 
-                  key={item.name} 
-                  href={item.href} 
-                  className="text-sm font-medium hover:text-primary transition-colors"
-                >
-                  {item.name}
-                </Link>
-              ))}
+            <nav className="hidden md:flex items-center space-x-6">
+              {navItems.map((item) => renderNavItem(item))}
               <Button asChild className='bg-[#24388F]'>
                 <Link href="/contact" className="bg-[#24388F] text-white px-4 py-2 rounded-md hover:bg-[#1A2C7C] transition-colors">
                   CONTACT US
@@ -86,7 +169,7 @@ export default function Navbar() {
 
       <div
         className={cn(
-          "fixed top-0 left-0 bottom-0 w-[300px] bg-white z-50 md:hidden transform transition-transform duration-300 ease-in-out",
+          "fixed top-0 left-0 bottom-0 w-full max-w-[300px] bg-white z-50 md:hidden transform transition-transform duration-300 ease-in-out overflow-y-auto",
           mobileMenuOpen ? "translate-x-0" : "-translate-x-full"
         )}
       >
@@ -96,16 +179,7 @@ export default function Navbar() {
           </button>
 
           <nav className="flex-1 space-y-4">
-            {navItems.map((item) => (
-              <Link
-                key={item.name}
-                href={item.href}
-                className="block py-3 text-base font-medium border-b border-gray-200 hover:text-primary transition-colors"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                {item.name}
-              </Link>
-            ))}
+            {navItems.map((item) => renderNavItem(item, true))}
             <Link
               href="/contact"
               className="block py-3 mt-4 text-base font-medium text-white bg-[#24388F] rounded-md text-center hover:bg-[#1A2C7C] transition-colors"

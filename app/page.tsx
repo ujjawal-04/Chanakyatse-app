@@ -3,8 +3,9 @@ import SplitLayout from '@/components/split'
 import ScrollableCards from '@/components/scrollcards'
 import WorkWithUsLayout from '@/components/reverseSplit'
 import SlidingText from '@/components/slide'
-import TextWithImages from '@/components/textwithimg'
 import { Hero } from '@/components/hero'
+import ClientTestimonials from '@/components/testimonials'
+import Features from '@/components/features'
 
 const Page = () => {
   return (
@@ -15,22 +16,23 @@ const Page = () => {
       <div className="mt-20">
       <SplitLayout/>
       </div>
-      
+      <div className="mt-20">
+      <Features/>
+      </div>
       <div className="mt-20">
       <ScrollableCards/>
       </div>
-      
-      <div className="mt-20">
-      <WorkWithUsLayout/>
-      </div>
-      
+
+      <ClientTestimonials/>
+
       <div className="mt-20">
       <SlidingText/>
       </div>
       
-      <div className="mt-2 mb-20">
-      <TextWithImages/>
+      <div className="mt-20 mb-40">
+      <WorkWithUsLayout/>
       </div>
+      
     </div>
   )
 }
