@@ -77,8 +77,8 @@ export default function Navbar() {
         <div
           key={item.name}
           className={`relative ${mobile ? 'w-full' : ''}`}
-          onMouseEnter={() => handleMouseEnter(item.name)} // Use name directly here
-          onMouseLeave={handleMouseLeave} // Removed redundant argument
+          onMouseEnter={() => handleMouseEnter(item.name)}
+          onMouseLeave={handleMouseLeave}
         >
           <button
             className={`flex items-center ${mobile ? 'w-full py-3 text-base font-medium border-b border-gray-200' : 'text-sm font-medium'} hover:text-primary transition-colors`}
@@ -91,8 +91,8 @@ export default function Navbar() {
             <div
               ref={(el) => { dropdownRefs.current[item.name] = el }}
               className={`${mobile ? 'mt-2 ml-4' : 'absolute left-0 mt-2 w-48 bg-white shadow-lg rounded-md overflow-hidden'}`}
-              onMouseEnter={() => handleMouseEnter(item.name)} // Use name directly here
-              onMouseLeave={handleMouseLeave} // Removed redundant argument
+              onMouseEnter={() => handleMouseEnter(item.name)}
+              onMouseLeave={handleMouseLeave}
             >
               {item.dropdown.map((subItem) => (
                 <Link
@@ -123,8 +123,8 @@ export default function Navbar() {
 
   return (
     <>
-      <header className="fixed top-0 w-full bg-white backdrop-blur-sm z-40 border-b">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+      <header className="fixed top-0 w-full bg-white backdrop-blur-sm z-40 border-b overflow-x-hidden">
+        <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16 sm:h-20">
             <Link href="/" className="flex items-center space-x-2">
               <Image
@@ -161,7 +161,7 @@ export default function Navbar() {
 
       <div
         className={cn(
-          "fixed inset-0 bg-black/50 z-40 md:hidden transition-opacity duration-300",
+          "fixed inset-0 bg-black/50 z-40 md:hidden transition-opacity duration-300 overflow-x-hidden",
           mobileMenuOpen ? "opacity-100" : "opacity-0 pointer-events-none"
         )}
         onClick={() => setMobileMenuOpen(false)}
@@ -169,15 +169,11 @@ export default function Navbar() {
 
       <div
         className={cn(
-          "fixed top-0 left-0 bottom-0 w-full max-w-[300px] bg-white z-50 md:hidden transform transition-transform duration-300 ease-in-out overflow-y-auto",
+          "fixed top-0 left-0 bottom-0 w-full max-w-[300px] bg-white z-50 md:hidden transform transition-transform duration-300 ease-in-out overflow-y-auto overflow-x-hidden",
           mobileMenuOpen ? "translate-x-0" : "-translate-x-full"
         )}
       >
         <div className="flex flex-col h-full pt-20 pb-6 px-4">
-          <button onClick={() => setMobileMenuOpen(false)} className="self-end mb-6">
-            <X className="h-6 w-6 text-gray-700" />
-          </button>
-
           <nav className="flex-1 space-y-4">
             {navItems.map((item) => renderNavItem(item, true))}
             <Link
