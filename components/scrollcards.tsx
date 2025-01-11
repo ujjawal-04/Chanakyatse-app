@@ -34,7 +34,7 @@ const ScrollableCards = () => {
   return (
     <div className="w-full bg-white px-4 md:px-8">
       <div className="scrollbar-hide overflow-x-auto -mx-4 md:-mx-8">
-        <div className="flex space-x-8 pb-6 px-4 md:px-8">
+        <div className="flex space-x-8 pb-2 px-4 md:px-8">
           {items.map((item, index) => (
             <div
               key={index}

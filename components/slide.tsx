@@ -2,7 +2,7 @@
 import React from 'react';
 
 const SlidingText = () => {
-  const words = ['accessibility', 'inclusivity', 'equality'];
+  const words = ['Freedom', 'Human Rights', 'Equality'];
   
   return (
     <div className="w-full overflow-hidden bg-white py-8">

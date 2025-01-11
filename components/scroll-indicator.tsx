@@ -1,32 +1,38 @@
-'use client'
+"use client"
 
 import { motion } from "framer-motion"
 
 export function ScrollIndicator() {
   return (
     <motion.div 
-      className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
+      className="absolute -bottom-14 left-1/2 -translate-x-1/2 w-48 h-48" // Increased width and shifted up
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      transition={{ delay: 2 }}
+      transition={{ delay: 0.5 }}
     >
-      <span className="text-sm text-white/70">Scroll Down</span>
       <motion.div
-        className="w-6 h-6 border-2 border-white/30 rounded-full"
-        animate={{
-          y: [0, 8, 0]
-        }}
+        className="w-full h-full"
+        animate={{ rotate: 360 }}
         transition={{
-          duration: 1.5,
+          duration: 8,
           repeat: Infinity,
-          ease: "easeInOut"
+          ease: "linear"
         }}
       >
-        <motion.div 
-          className="w-1 h-1 bg-white rounded-full mx-auto mt-1"
-        />
+        <svg viewBox="0 0 100 100" className="w-full h-full">
+          <defs>
+            <path
+              id="circle"
+              d="M 50,50 m -37,0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0"
+            />
+          </defs>
+          <text className="text-[12px] uppercase tracking-[0.14em] fill-white/95">
+            <textPath href="#circle" startOffset="0%">
+              Scroll Down Scroll Down
+            </textPath>
+          </text>
+        </svg>
       </motion.div>
     </motion.div>
   )
 }
-

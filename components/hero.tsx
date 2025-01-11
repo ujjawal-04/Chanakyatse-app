@@ -10,7 +10,6 @@ import Link from "next/link"
 export function Hero() {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-blue-800 to-blue-500">
-      {/* Animated background pattern */}
       <ImageSlider/>
             <motion.div 
         className="absolute inset-0 opacity-10"
@@ -21,7 +20,7 @@ export function Hero() {
         <div className="absolute inset-0 bg-[url('/grid.svg')] bg-repeat opacity-30" />
       </motion.div>
 
-      {/* Content container */}
+     
       <div className="container mx-auto px-4 text-center relative z-10">
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
@@ -61,7 +60,7 @@ export function Hero() {
           </Link>
       </div>
   <ScrollIndicator/>
-      {/* Animated gradient overlay */}
+     
       <motion.div
         className="absolute inset-0 bg-gradient-to-b from-transparent to-blue-900/50"
         initial={{ opacity: 0 }}

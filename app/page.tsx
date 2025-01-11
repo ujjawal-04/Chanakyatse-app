@@ -11,25 +11,25 @@ const Page = () => {
     <div className='bg-white'>
       <div className="mt-0">
         <Hero/>
-        <br />
-        <br />
-        <SplitLayout/>
+      </div>
+      <div className="mt-20">
+      <SplitLayout/>
       </div>
       
-      <div className="mt-32">
-        <ScrollableCards/>
+      <div className="mt-20">
+      <ScrollableCards/>
       </div>
       
-      <div className="mt-32">
-        <WorkWithUsLayout/>
+      <div className="mt-20">
+      <WorkWithUsLayout/>
       </div>
       
-      <div className="mt-32">
-        <SlidingText/>
+      <div className="mt-20">
+      <SlidingText/>
       </div>
       
       <div className="mt-2 mb-20">
-        <TextWithImages/>
+      <TextWithImages/>
       </div>
     </div>
   )

@@ -1,100 +1,120 @@
 'use client'
-import React, { useState, useEffect } from 'react';
-import Image from 'next/image';
 
-const WorkWithUsLayout = () => {
-  const [scrollY, setScrollY] = useState(0);
+import React, { useState, useEffect } from 'react'
+import Image from 'next/image'
+import { motion } from 'framer-motion'
+import Link from 'next/link'
+import { ArrowRight } from 'lucide-react'
 
-  // Track scroll position
+const SplitLayout = () => {
+  const [scrollY, setScrollY] = useState(0)
+
   useEffect(() => {
     const handleScroll = () => {
-      setScrollY(window.scrollY);
-    };
+      setScrollY(window.scrollY)
+    }
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
 
-    // Cleanup on unmount
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  const imageShiftMain = scrollY * 0.03
+  const imageShiftSmall = scrollY * 0.03
 
-  // Calculate the vertical shift for images based on scroll
-  const imageShiftMain = scrollY * 0.05; // Slight vertical shift for the main image (adjust the factor)
-  const imageShiftSmall = scrollY * 0.05; // Slight vertical shift for the small image (adjust the factor)
+  const textVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { 
+      opacity: 1, 
+      y: 0, 
+      transition: { duration: 0.8 }
+    }
+  }
 
   return (
-    <div className="h-[100vh] flex flex-col md:flex-row bg-white">
-      {/* Left Column - Images */}
-      <div className="w-full md:w-1/2 bg-white flex items-center relative ml-20">
-        {/* Main image */}
-      <div 
-        className="relative transition-all duration-700 ease-in-out transform"
-        style={{
-          transform: `translateY(${imageShiftMain}px)`, // Main image moves up/down
-          height: '85vh', // Ensure the image fits the screen height
-          width: '80vw',  // Ensure the image takes up the full screen width
-        }}
-      >
-        <Image 
-          src="/tg.jpg"
-          alt="Community inclusion"
-          className="w-full h-full object-cover"
-          width={1000}
-          height={1000}
-        />
-      </div>
-
-        {/* Small overlapping image */}
+    <div className="min-h-screen flex flex-col md:flex-row bg-white">
+      <div className="w-full md:w-1/2 bg-white flex flex-col items-center justify-center relative order-1 md:order-1">
+       
         <div 
-          className="absolute right-0 top-2/4 z-10 transition-transform duration-700 ease-in-out"
+          className="absolute right-0 top-1/3 md:top-1/3 z-10 transition-transform duration-700 ease-in-out"
           style={{
-            transform: `translateY(-${imageShiftSmall}px) translateX(40%)`, // Small image moves up/down and slightly right
-            objectFit: 'contain', // Ensures the small image is fully visible without cutting horizontally
+            transform: `translateY(-${imageShiftSmall}px) translateX(10%)`
           }}
         >
-          <Image 
-            src="/cmp.jpg"
-            alt="Accessibility features"
-            className="w-72 h-96 object-cover shadow-xl"
+          <Image
+            src="/1.avif"
+            alt="logo"
+            className="w-36 h-44 md:w-64 md:h-96 shadow-xl rounded-lg transition-all duration-700 ease-in-out"
+            width={1000}
+            height={1000}
+          />
+        </div>
+
+        <div 
+          className="relative transition-all duration-700 ease-in-out transform"
+          style={{
+            transform: `translateY(${imageShiftMain}px)`, 
+            height: '80vh',
+            width: '100%',
+          }}
+        >
+          <Image
+            src="/2.avif"
+            alt="founder"
+            className="w-full h-full object-contain rounded-lg"
             width={1000}
             height={1000}
           />
         </div>
       </div>
 
-      {/* Right Column - Content */}
-      <div className="w-full md:w-1/2 bg-white pl-40 pr-12 py-12 flex flex-col justify-center">
-        <p className="text-base font-medium mb-6 uppercase tracking-wider">
-          WORK WITH US
-        </p>
-        
-        <h1 className="text-4xl font-serif mb-6 leading-tight text-black">
-          Want to work towards building inclusive communities?
-        </h1>
-        
-        <p className="text-gray-600 mb-8 text-lg leading-relaxed">
-          Become an integral part of our hardworking team, make new friends, make 
-          a real difference and learn skills all while helping promote equal access to 
-          opportunities!
-        </p>
-        
-        <a 
-          href="#apply"
-          className="text-red-500 hover:text-red-600 mb-12 inline-block"
+      <motion.div 
+        initial="hidden"
+        animate="visible"
+        variants={{
+          visible: {
+            transition: {
+              staggerChildren: 0.2
+            }
+          }
+        }}
+        className="w-full md:w-1/2 bg-white px-2 md:pl-16 md:pr-2 py-12 flex flex-col justify-center relative order-2 md:order-2"
+      >
+        <motion.h1 
+          variants={textVariants}
+          className="text-3xl md:text-4xl font-serif text-black mb-4 leading-tight"
         >
-          Click here to apply.
-        </a>
+          Join Us
+        </motion.h1>
+        
+        <motion.p 
+          variants={textVariants}
+          className="text-lg font-medium text-gray-600 mb-8 max-w-xl"
+        >
+          At Chanakyatse Consultancy, we believe that our success is driven by our people. Join a diverse and passionate team of experts who are shaping the future of business consulting.
+        </motion.p>
 
-        <div className="flex gap-4">
-          <span className="bg-gray-100 px-4 py-2 rounded-full text-gray-700">
-            Youth-oriented
-          </span>
-          <span className="bg-gray-100 px-4 py-2 rounded-full text-gray-700">
-            Established Team
-          </span>
-        </div>
-      </div>
+        <motion.p 
+          variants={textVariants}
+          className="text-gray-600 mb-12 text-lg leading-relaxed max-w-xl"
+        >
+          Joining our team means becoming part of a company that is shaping the future of business consulting. As part of our team, you will have the opportunity to contribute to projects that make a real difference, not only for our clients but for the broader business landscape.
+        </motion.p>
+        
+        <motion.div
+          variants={textVariants}
+          className="w-full sm:w-auto"
+        >
+          <Link 
+            href="/services"
+            className="group bg-[#24388F] text-white py-3 px-8 rounded-full inline-flex items-center justify-center text-lg font-semibold hover:bg-[#1a2d6d] transition-all duration-300 ease-in-out w-full sm:w-auto"
+          >
+            <span>Join Us</span>
+            <ArrowRight className="ml-2 w-5 h-5 transition-transform group-hover:translate-x-1" />
+          </Link>
+        </motion.div>
+      </motion.div>
     </div>
-  );
-};
+  )
+}
 
-export default WorkWithUsLayout;
+export default SplitLayout
