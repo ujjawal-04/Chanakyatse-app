@@ -5,6 +5,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Target, Users, BarChart3, Award, ChevronRight, X } from 'lucide-react';
 import Image from 'next/image';
 
+
 interface TeamMember {
   id: number;
   name: string;

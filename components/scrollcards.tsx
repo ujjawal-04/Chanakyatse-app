@@ -13,31 +13,31 @@ const ScrollableCards: React.FC = () => {
     {
       title: "Services",
       description: "Comprehensive accessibility solutions, digital inclusion consulting, and assistive technology implementation for organizations.",
-      image: "/lw.jpeg",
+      image: "/3.avif",
       path: "/services"
     },
     {
       title: "About Us",
       description: "Dedicated team of accessibility experts committed to creating an inclusive digital world through innovation and advocacy.",
-      image: "/lw.jpeg",
+      image: "/4.avif",
       path: "/about"
     },
     {
       title: "News",
       description: "Stay updated with the latest developments in accessibility technology, policy changes, and industry innovations.",
-      image: "/lw.jpeg",
+      image: "/5.avif",
       path: "/news"
     },
     {
       title: "Articles",
       description: "In-depth insights, best practices, and expert perspectives on digital accessibility and inclusive design.",
-      image: "/lw.jpeg",
+      image: "/6.avif",
       path: "/articles"
     },
     {
       title: "Case Studies",
       description: "Real-world examples of successful accessibility implementations and their impact on organizations and users.",
-      image: "/lw.jpeg",
+      image: "/7.avif",
       path: "/case-studies"
     }
   ];
@@ -59,7 +59,7 @@ const ScrollableCards: React.FC = () => {
 
   return (
     <div className="w-full bg-white px-4 md:px-8 relative">
-      <div className="absolute right-4 -top-14 flex gap-2 z-10">
+      <div className="absolute right-4 -top-14 flex gap-2 z-10 mb-20">
         {/* Left Arrow */}
         <button
           onClick={() => scroll('left')}
@@ -87,10 +87,10 @@ const ScrollableCards: React.FC = () => {
           {items.map((item, index) => (
             <div
               key={index}
-              className="flex-none w-80 md:w-[420px] transform transition-all duration-500 hover:-translate-y-2 group cursor-pointer"
+              className="flex-none w-80 md:w-[450px] transform transition-all duration-500 hover:-translate-y-2 group cursor-pointer rounded-xl overflow-hidden"
               onClick={() => handleCardClick(item.path)}
             >
-              <div className="relative aspect-[4/3] overflow-hidden border-2 border-gray-300">
+              <div className="relative aspect-[4/3] overflow-hidden border-2 border-gray-300 rounded-xl">
                 <Image
                   src={item.image}
                   alt={item.title}

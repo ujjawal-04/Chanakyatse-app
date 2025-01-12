@@ -5,33 +5,33 @@ import Image from "next/image";
 const reviews = [
   {
     name: "Mr. Ashish",
-    body: "I've never seen anything like this before. It's amazing. I love it.",
-    img: "https://google.com",
+    body: "Chanakya's expert guidance in corporate structuring has been instrumental in our successful expansion into the UAE market.",
+    img: "/d.png",
   },
   {
     name: "Mr. Fahad",
-    body: "I don't know what to say. I'm speechless. This is amazing.",
-    img: "https://google.com",
+    body: "The legal team at Chanakya provided invaluable support during our complex M&A process, ensuring a smooth transition.",
+    img: "/a.png",
   },
   {
     name: "Mr. Farhad",
-    body: "I'm at a loss for words. This is amazing. I love it.",
-    img: "https://google.com",
+    body: "Chanakya's comprehensive approach to business consultancy has helped us navigate the intricacies of both Indian and UAE markets effectively.",
+    img: "/f.png",
   },
   {
     name: "Automech Group",
-    body: "I'm at a loss for words. This is amazing. I love it.",
-    img: "https://google.com",
+    body: "Their expertise in intellectual property rights has been crucial in protecting our innovations across international borders.",
+    img: "/automech.webp",
   },
   {
     name: "Nanban Group Of Companies",
-    body: "I'm at a loss for words. This is amazing. I love it.",
-    img: "https://google.com",
+    body: "Chanakya's strategic restructuring advice has significantly improved our operational efficiency and profitability.",
+    img: "/nanban.webp",
   },
   {
     name: "Mr. Light Global",
-    body: "I'm at a loss for words. This is amazing. I love it.",
-    img: "https://google.com",
+    body: "From incorporation to expansion, Chanakya has been an indispensable partner in our business journey in India and the UAE.",
+    img: "/light.webp",
   },
 ];
 
@@ -52,20 +52,20 @@ const ReviewCard = ({
   return (
     <figure
       className={cn(
-        "relative w-64 cursor-pointer overflow-hidden rounded-xl border p-4",
-        // light styles
-        "border-gray-950/[.1] bg-gray-950/[.01] hover:bg-gray-950/[.05]",
-        // dark styles
-        "dark:border-gray-50/[.1] dark:bg-gray-50/[.10] dark:hover:bg-gray-50/[.15]",
+        "relative w-64 cursor-pointer overflow-hidden rounded-xl p-4",
+        "bg-[#24388F] text-white",
+        "border-2 border-white",
+        "hover:bg-[#2a4098]",
+        "transition-colors duration-300"
       )}
     >
       <div className="flex flex-row items-center gap-2">
         <Image className="rounded-full" width="32" height="38" alt="" src={img} />
         <div className="flex flex-col">
-          <figcaption className="text-xl font-medium dark:text-white">
+          <figcaption className="text-xl font-medium">
             {name}
           </figcaption>
-          <p className="text-xs font-medium dark:text-white/40">{username}</p>
+          <p className="text-xs font-medium text-white/70">{username}</p>
         </div>
       </div>
       <blockquote className="mt-2 text-sm">{body}</blockquote>
@@ -92,3 +92,4 @@ export function MarqueeDemo() {
     </div>
   );
 }
+
