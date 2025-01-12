@@ -21,7 +21,7 @@ export function ImageSlider() {
   }, [])
 
   return (
-    <div className="absolute inset-0 overflow-hidden">
+    <div className="absolute inset-0 w-full h-full overflow-hidden">
       <AnimatePresence mode="wait">
         <motion.div
           key={currentIndex}
@@ -29,19 +29,39 @@ export function ImageSlider() {
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 1.2 }}
-          className="absolute inset-0"
+          className="absolute inset-0 w-full h-full"
         >
-          <Image
-            src={images[currentIndex]}
-            alt="Business consultancy services"
-            fill
-            className="object-cover object-center"
-            priority
-          />
-          <div className="absolute inset-0 bg-black/40 to-transparent" />
+          <div className="relative w-full h-full">
+            <Image
+              src={images[currentIndex]}
+              alt={`Slide ${currentIndex + 1}`}
+              fill
+              className="object-cover object-center"
+              priority
+              sizes="(max-width: 768px) 100vw,
+                     (max-width: 1200px) 100vw,
+                     100vw"
+              quality={90}
+              loading="eager"
+            />
+            <div className="absolute inset-0 bg-gradient-to-b from-black/40 to-transparent" />
+          </div>
         </motion.div>
       </AnimatePresence>
+      
+      {/* Optional: Add navigation dots */}
+      <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2 z-20">
+        {images.map((_, index) => (
+          <button
+            key={index}
+            onClick={() => setCurrentIndex(index)}
+            className={`w-2 h-2 rounded-full transition-all ${
+              currentIndex === index ? 'bg-white w-4' : 'bg-white/50'
+            }`}
+            aria-label={`Go to slide ${index + 1}`}
+          />
+        ))}
+      </div>
     </div>
   )
 }
-

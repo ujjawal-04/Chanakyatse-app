@@ -4,8 +4,9 @@ import ScrollableCards from '@/components/scrollcards'
 import WorkWithUsLayout from '@/components/reverseSplit'
 import SlidingText from '@/components/slide'
 import { Hero } from '@/components/hero'
-import ClientTestimonials from '@/components/testimonials'
+import { MarqueeDemo } from '@/components/testimonials'
 import Features from '@/components/features'
+
 
 const Page = () => {
   return (
@@ -23,11 +24,11 @@ const Page = () => {
         <div className="mt-20">
           <ScrollableCards/>
         </div>
-        <ClientTestimonials/>
+        <MarqueeDemo/>
         <div className="mt-20">
           <SlidingText/>
         </div>
-        <div className="mt-20 mb-40">
+        <div className="mt-20 mb-20">
           <WorkWithUsLayout/>
         </div>
       </div>

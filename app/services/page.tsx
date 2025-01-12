@@ -195,7 +195,7 @@ const ServicesPage = () => {
             </p>
             <button 
               onClick={() => router.push('/contact')}
-              className="bg-[#24388F] text-white px-8 py-3 rounded-lg hover:bg-[#24388F]/90 transition-colors shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all"
+              className="bg-[#24388F] text-white px-8 py-3 rounded-lg hover:bg-[#24388F]/90  shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all"
             >
               Contact Us
             </button>

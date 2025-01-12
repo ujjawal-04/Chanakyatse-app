@@ -1,5 +1,7 @@
 {
   "compilerOptions": {
+    "types": ["locomotive-scroll"],
+    "forceConsistentCasingInFileNames": true,
     "target": "ES2017",
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,

@@ -1,109 +1,94 @@
-'use client'
+import { cn } from "@/lib/utils";
+import Marquee from "@/components/ui/marquee";
+import Image from "next/image";
 
-import { useState, useEffect } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
-
-const testimonials = [
+const reviews = [
   {
-    quote: "Chanakyatse Consultancy's expertise was instrumental in our successful expansion into the UAE market. Their comprehensive understanding of both Indian and UAE business landscapes proved invaluable.",
-    author: "Rajesh Patel",
-    company: "TechInnovate Solutions Pvt. Ltd."
-  },
-  {
-    quote: "The team at Chanakyatse provided us with exceptional guidance during our M&A process. Their strategic insights and meticulous approach ensured a smooth transition.",
-    author: "Sarah Al-Mansoori",
-    company: "Gulf Enterprises LLC"
+    name: "Mr. Ashish",
+    body: "I've never seen anything like this before. It's amazing. I love it.",
+    img: "https://google.com",
   },
   {
-    quote: "We were impressed by Chanakyatse's in-depth knowledge of intellectual property rights. They helped us navigate complex legal challenges and secure our innovations effectively.",
-    author: "Dr. Aisha Khan",
-    company: "MediTech Innovations"
-  }
-]
-
-const variants = {
-  enter: (direction: number) => {
-    return {
-      x: direction > 0 ? 1000 : -1000,
-      opacity: 0,
-      rotateY: direction > 0 ? 45 : -45
-    }
+    name: "Mr. Fahad",
+    body: "I don't know what to say. I'm speechless. This is amazing.",
+    img: "https://google.com",
   },
-  center: {
-    zIndex: 1,
-    x: 0,
-    opacity: 1,
-    rotateY: 0
+  {
+    name: "Mr. Farhad",
+    body: "I'm at a loss for words. This is amazing. I love it.",
+    img: "https://google.com",
   },
-  exit: (direction: number) => {
-    return {
-      zIndex: 0,
-      x: direction < 0 ? 1000 : -1000,
-      opacity: 0,
-      rotateY: direction < 0 ? 45 : -45
-    }
-  }
-}
+  {
+    name: "Automech Group",
+    body: "I'm at a loss for words. This is amazing. I love it.",
+    img: "https://google.com",
+  },
+  {
+    name: "Nanban Group Of Companies",
+    body: "I'm at a loss for words. This is amazing. I love it.",
+    img: "https://google.com",
+  },
+  {
+    name: "Mr. Light Global",
+    body: "I'm at a loss for words. This is amazing. I love it.",
+    img: "https://google.com",
+  },
+];
 
-export default function ClientTestimonials() {
-  const [[page, direction], setPage] = useState([0, 0])
+const firstRow = reviews.slice(0, reviews.length / 2);
+const secondRow = reviews.slice(reviews.length / 2);
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setPage(([prevPage]) => [
-        (prevPage + 1) % testimonials.length,
-        1
-      ])
-    }, 5000) // Change testimonial every 5 seconds
-
-    return () => clearTimeout(timer)
-  }, [page])
-
+const ReviewCard = ({
+  img,
+  name,
+  username,
+  body,
+}: {
+  img: string;
+  name: string;
+  username: string;
+  body: string;
+}) => {
   return (
-    <section className="py-20 bg-gray-50">
-      <div className="container mx-auto px-4">
-        <h2 className="text-3xl font-bold text-center mb-12 text-[#24388F]">Client Testimonials</h2>
-        <div className="relative h-[300px] max-w-3xl mx-auto">
-          <AnimatePresence initial={false} custom={direction}>
-            <motion.div
-              key={page}
-              custom={direction}
-              variants={variants}
-              initial="enter"
-              animate="center"
-              exit="exit"
-              transition={{
-                x: { type: "spring", stiffness: 300, damping: 30 },
-                opacity: { duration: 0.2 },
-                rotateY: { duration: 0.5 }
-              }}
-              className="absolute w-full"
-            >
-              <div className="bg-white p-8 rounded-lg shadow-lg">
-                <p className="text-lg mb-4 italic text-gray-700">&quot;{testimonials[page].quote}&quot;</p>
-                <div>
-                  <p className="font-semibold text-[#24388F]">{testimonials[page].author}</p>
-                  <p className="text-sm text-gray-600">{testimonials[page].company}</p>
-                </div>
-              </div>
-            </motion.div>
-          </AnimatePresence>
-        </div>
-        <div className="flex justify-center mt-8">
-          <div className="flex space-x-2">
-            {testimonials.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => setPage([index, index > page ? 1 : -1])}
-                className={`w-3 h-3 rounded-full ${
-                  index === page ? 'bg-[#24388F]' : 'bg-gray-300'
-                }`}
-                aria-label={`Go to testimonial ${index + 1}`}
-              />
-            ))}
-          </div>
+    <figure
+      className={cn(
+        "relative w-64 cursor-pointer overflow-hidden rounded-xl border p-4",
+        // light styles
+        "border-gray-950/[.1] bg-gray-950/[.01] hover:bg-gray-950/[.05]",
+        // dark styles
+        "dark:border-gray-50/[.1] dark:bg-gray-50/[.10] dark:hover:bg-gray-50/[.15]",
+      )}
+    >
+      <div className="flex flex-row items-center gap-2">
+        <Image className="rounded-full" width="32" height="38" alt="" src={img} />
+        <div className="flex flex-col">
+          <figcaption className="text-xl font-medium dark:text-white">
+            {name}
+          </figcaption>
+          <p className="text-xs font-medium dark:text-white/40">{username}</p>
         </div>
       </div>
-    </section>
-  )
+      <blockquote className="mt-2 text-sm">{body}</blockquote>
+    </figure>
+  );
+};
+
+export function MarqueeDemo() {
+  return (
+    <div className="relative flex h-[600px] w-full flex-col items-center justify-center overflow-hidden rounded-lg border bg-background md:shadow-xl">
+      <h2 className="text-3xl font-bold text-center mb-12 text-[#24388F]">Client Testimonials</h2>
+      <Marquee pauseOnHover className="[--duration:20s]">
+        {firstRow.map((review) => (
+          <ReviewCard username={""} key={review.name} {...review} />
+        ))}
+      </Marquee>
+      <Marquee reverse pauseOnHover className="[--duration:20s]">
+        {secondRow.map((review) => (
+          <ReviewCard username={""} key={review.name} {...review} />
+        ))}
+      </Marquee>
+      <div className="pointer-events-none absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r from-white dark:from-background"></div>
+      <div className="pointer-events-none absolute inset-y-0 right-0 w-1/3 bg-gradient-to-l from-white dark:from-background"></div>
+    </div>
+  );
 }

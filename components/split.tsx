@@ -1,26 +1,12 @@
 'use client'
 
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
 
 const SplitLayout = () => {
-  const [scrollY, setScrollY] = useState(0)
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrollY(window.scrollY)
-    }
-
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
-
-  const imageShiftMain = scrollY * 0.05
-  const imageShiftSmall = scrollY * 0.05
-
   const textVariants = {
     hidden: { opacity: 0, y: 20 },
     visible: { 
@@ -32,7 +18,6 @@ const SplitLayout = () => {
 
   return (
     <div className="min-h-screen flex flex-col md:flex-row bg-white">
-     
       <motion.div 
         initial="hidden"
         animate="visible"
@@ -81,26 +66,29 @@ const SplitLayout = () => {
       </motion.div>
 
       <div className="w-full md:w-1/2 bg-white flex flex-col md:flex-row items-center justify-center relative order-1 md:order-2 ml-10">
-       
         <div 
-          className="absolute left-0 top-1/4 md:top-1/3 z-10 transition-transform duration-700 ease-in-out"
+          className="absolute left-0 top-1/4 md:top-1/3 z-10"
+          data-scroll
+          data-scroll-speed="-1.5"
           style={{
-            transform: `translateY(-${imageShiftSmall}px) translateX(-20%)`
+            transform: 'translateX(-20%)'
           }}
         >
           <Image
             src="/logo2.jpg"
             alt="logo"
-            className="w-36 h-44 md:w-64 md:h-96 shadow-xl rounded-lg transition-all duration-700 ease-in-out"
+            className="w-36 h-44 md:w-64 md:h-96 shadow-xl rounded-lg"
             width={1000}
             height={1000}
+            priority
           />
         </div>
 
         <div 
-          className="relative transition-all duration-700 ease-in-out transform"
+          className="relative"
+          data-scroll
+          data-scroll-speed="1.5"
           style={{
-            transform: `translateY(${imageShiftMain}px)`, 
             height: '80vh',
             width: '100%',
           }}
@@ -111,6 +99,7 @@ const SplitLayout = () => {
             className="w-full h-full object-contain rounded-lg"
             width={1000}
             height={1000}
+            priority
           />
         </div>
       </div>
