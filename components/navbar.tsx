@@ -90,7 +90,7 @@ export default function Navbar() {
           {(openDropdown === item.name || (!mobile && openDropdown === item.name)) && (
             <div
               ref={(el) => { dropdownRefs.current[item.name] = el }}
-              className={`${mobile ? 'mt-2 ml-4' : 'absolute left-0 mt-2 w-48 bg-white shadow-lg rounded-md overflow-hidden'}`}
+              className={`${mobile ? 'mt-2 ml-4' : 'absolute left-0 mt-2 w-48 bg-white shadow-lg rounded-md '}`}
               onMouseEnter={() => handleMouseEnter(item.name)}
               onMouseLeave={handleMouseLeave}
             >
@@ -123,7 +123,7 @@ export default function Navbar() {
 
   return (
     <>
-      <header className="fixed top-0 w-full bg-white backdrop-blur-sm z-40 border-b overflow-x-hidden">
+      <header className="fixed top-0 w-full bg-white backdrop-blur-sm z-40 border-b">
         <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16 sm:h-20">
             <Link href="/" className="flex items-center space-x-2">
