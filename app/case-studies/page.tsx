@@ -7,7 +7,7 @@ export default function CaseStudiesPage() {
   return (
     <div className="min-h-screen bg-[#f8fafc]">
       {/* Hero Section */}
-      <div className="relative h-[500px]">
+      <div className="relative h-[500px] bg-[#1e3a8a]">
         <Image
           src="/case.webp"
           alt="Case Studies Banner"
@@ -15,7 +15,7 @@ export default function CaseStudiesPage() {
           className="object-cover opacity-50"
           priority
         />
-        <div className="absolute inset-0" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#1e3a8a]/80 to-[#1e40af]/80" />
         <div className="relative container mx-auto h-full flex flex-col justify-center px-4">
           <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
             Case Studies
