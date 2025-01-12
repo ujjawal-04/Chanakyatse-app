@@ -3,6 +3,7 @@
 import React from 'react';
 import { ChevronRight } from 'lucide-react';
 import { useRouter } from 'next/navigation';
+import Image from 'next/image';
 
 interface Service {
   id: number;
@@ -148,10 +149,12 @@ const ServicesPage = () => {
                   <div className="absolute inset-0">
                     <div className="h-full w-full rounded-xl relative overflow-hidden">
                       <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
-                      <img 
+                      <Image
                         src={service.imageUrl} 
                         alt={service.title}
                         className="w-full h-full object-cover rounded-xl"
+                        height={1000}
+                        width={1000}
                       />
                       <div className="absolute inset-0 flex items-center justify-center p-6">
                         <div className="text-center">

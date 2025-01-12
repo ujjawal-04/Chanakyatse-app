@@ -1,13 +1,13 @@
-'use client'
+'use client';
 
 import React, { useRef } from 'react';
 import Image from 'next/image';
 import { ArrowUpRight, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 
-const ScrollableCards = () => {
+const ScrollableCards: React.FC = () => {
   const router = useRouter();
-  const scrollContainerRef = useRef(null);
+  const scrollContainerRef = useRef<HTMLDivElement | null>(null);
 
   const items = [
     {
@@ -42,11 +42,11 @@ const ScrollableCards = () => {
     }
   ];
 
-  const handleCardClick = (path) => {
+  const handleCardClick = (path: string) => {
     router.push(path);
   };
 
-  const scroll = (direction) => {
+  const scroll = (direction: 'left' | 'right') => {
     if (scrollContainerRef.current) {
       const container = scrollContainerRef.current;
       const scrollAmount = direction === 'left' ? -container.offsetWidth : container.offsetWidth;

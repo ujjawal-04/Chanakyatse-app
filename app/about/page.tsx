@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Target, Users, BarChart3, Award, ChevronRight, X } from 'lucide-react';
+import Image from 'next/image';
 
 interface TeamMember {
   id: number;
@@ -144,7 +145,7 @@ const AboutUsPage = () => {
                 <span className="font-semibold text-[#24388F]">Chanakyatse Consultancy</span> is a pioneering firm dedicated to navigating businesses through the ever-evolving and dynamic landscape they operate in. Recognizing the intricate challenges posed by external factors such as governmental policies, regulatory shifts, and market requirements, our consultancy provides a comprehensive team of experts adept at guiding and supporting businesses at every juncture.
               </p>
               <p className="text-gray-600 leading-relaxed">
-                With a proactive philosophy centered on the principle "ounce of prevention is better than a pound of cure," we specialize in addressing current business challenges while strategically averting potential future obstacles. Our commitment lies in ensuring that businesses not only overcome existing issues but also fortify themselves against unforeseen adversities.
+                With a proactive philosophy centered on the principle &quot;ounce of prevention is better than a pound of cure,&quot; we specialize in addressing current business challenges while strategically averting potential future obstacles. Our commitment lies in ensuring that businesses not only overcome existing issues but also fortify themselves against unforeseen adversities.
               </p>
               <p className="text-gray-600 leading-relaxed">
                 As a successful lawyer, <span className="font-semibold text-[#24388F]">Adv. Bindu S Chettur</span> has witnessed firsthand the intersection of legal intricacies and business challenges, propelling her to combine her profound legal expertise with keen business acumen to create Chanakyatse Consultancy, a firm that stands at the forefront of innovation, strategy, and excellence.
@@ -153,10 +154,12 @@ const AboutUsPage = () => {
           </div>
           <div className="bg-gray-100 h-64 md:h-[400px] rounded-lg">
             <div className="w-full h-full flex items-center justify-center">
-              <img 
+              <Image
                 src="/Chan_Abt.jpg" 
                 alt="About Us" 
                 className="rounded-lg w-full h-full object-cover object-center" 
+                height={1000}
+                width={1000}
               />
             </div>
           </div>
@@ -213,10 +216,12 @@ const AboutUsPage = () => {
               <Card key={member.id} className="text-center overflow-hidden hover:shadow-lg transition-shadow duration-300">
                 <CardContent className="p-0">
                   <div className="w-full h-48 sm:h-56 md:h-64 mx-auto bg-gray-200 overflow-hidden">
-                    <img 
+                    <Image
                       src={member.imageUrl} 
                       alt={member.name} 
                       className="w-full h-full object-cover object-center" 
+                      height={1000}
+                      width={1000}
                     />
                   </div>
                   <div className="p-4 md:p-6 space-y-3">
@@ -276,10 +281,12 @@ const AboutUsPage = () => {
 
                 {/* Right Content - Image */}
                 <div className="flex items-start justify-center">
-                  <img 
+                  <Image
                     src={selectedMember.imageUrl} 
                     alt={selectedMember.name} 
                     className="w-full max-w-md rounded-lg" 
+                    height={1000}
+                    width={1000}
                   />
                 </div>
               </div>
