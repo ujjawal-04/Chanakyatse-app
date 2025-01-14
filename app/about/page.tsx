@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Target, Users, BarChart3, Award, ChevronRight, X } from 'lucide-react';
 import Image from 'next/image';
+import Link from 'next/link';
 
 interface TeamMember {
   id: number;
@@ -18,7 +19,7 @@ const teamMembers: TeamMember[] = [
     id: 1,
     name: 'Adv. Bindu S. Chettur',
     position: 'Founder and Managing Director',
-    imageUrl: '/Adv-Binschet.jpg',
+    imageUrl: '/Adv-Binschet.webp',
     description: [
       'As a successful lawyer, Adv. Bindu S Chettur has witnessed firsthand the intersection of legal intricacies and business challenges.',
       'Her profound legal expertise combined with keen business acumen led to the creation of Chanakyatse Consultancy.'
@@ -28,7 +29,7 @@ const teamMembers: TeamMember[] = [
     id: 2,
     name: 'Adv. Shaffi Mather',
     position: 'Public Policy Analyst',
-    imageUrl: '/ShaffiMather.jpg',
+    imageUrl: '/ShaffiMather.webp',
     description: [
       'Expert in public policy and regulatory affairs.',
       'Extensive experience in policy analysis and implementation.'
@@ -38,7 +39,7 @@ const teamMembers: TeamMember[] = [
     id: 3,
     name: 'Adv. Amjith M Anandhan',
     position: 'Senior Legal Associate',
-    imageUrl: '/Amjith.jpg',
+    imageUrl: '/Amjith.webp',
     description: [
       'Specializes in corporate law and commercial litigation.',
       'Experienced in handling complex legal matters and disputes.'
@@ -48,7 +49,7 @@ const teamMembers: TeamMember[] = [
     id: 4,
     name: 'Adv. Ashok GV',
     position: 'Senior Legal Associate',
-    imageUrl: '/tst-ask.jpg',
+    imageUrl: '/tst-ask.webp',
     description: [
       'A dispute resolution counsel, Ashok represents clients in the food and beverages, healthcare, pharmaceuticals, technology, banking and financial services, real estate and construction, ecommerce and hospitality areas, in domestic and international dispute resolution.',
       'His service areas cover contract violations, company law proceedings, prosecution under India\'s Food Standards and Safety Act, 2006 and Prevention of Food Adulteration Act, and IP rights enforcement.',
@@ -60,7 +61,7 @@ const teamMembers: TeamMember[] = [
     id: 5,
     name: 'Adv. Jinesh',
     position: 'Senior Finance Expert',
-    imageUrl: '/tst-man.jpg',
+    imageUrl: '/tst-man.webp',
     description: [
       'Expert in financial planning and analysis.',
       'Specializes in corporate finance and investment strategies.'
@@ -70,7 +71,7 @@ const teamMembers: TeamMember[] = [
     id: 6,
     name: 'Adv. Sindhya S Nair',
     position: 'Legal Associate',
-    imageUrl: '/Sindhya.jpg',
+    imageUrl: '/Sindhya.webp',
     description: [
       'Focuses on corporate legal compliance and documentation.',
       'Experienced in handling regulatory matters.'
@@ -80,7 +81,7 @@ const teamMembers: TeamMember[] = [
     id: 7,
     name: 'Ashwin Chaturvedi',
     position: 'Legal Associate',
-    imageUrl: '/Ashwin.jpg',
+    imageUrl: '/Ashwin.webp',
     description: [
       'Specializes in contract law and negotiations.',
       'Handles corporate legal affairs and compliance matters.'
@@ -90,7 +91,7 @@ const teamMembers: TeamMember[] = [
     id: 8,
     name: 'Raj Naveen',
     position: 'Senior Finance Expert',
-    imageUrl: '/tst-raj.jpg',
+    imageUrl: '/tst-raj.webp',
     description: [
       'Expert in financial planning and risk management.',
       'Provides strategic financial guidance to clients.'
@@ -100,7 +101,7 @@ const teamMembers: TeamMember[] = [
     id: 9,
     name: 'CA. Sai Prasad K',
     position: 'Senior Finance Expert',
-    imageUrl: '/tst-sai.jpg',
+    imageUrl: '/tst-sai.webp',
     description: [
       'Chartered Accountant with expertise in taxation.',
       'Specializes in financial consulting and auditing.'
@@ -110,19 +111,24 @@ const teamMembers: TeamMember[] = [
     id: 10,
     name: 'Sachin Pawar',
     position: 'Legal Associate',
-    imageUrl: '/Sachin-Pawar.jpg',
+    imageUrl: '/Sachin-Pawar.webp',
     description: [
       'Focuses on litigation and dispute resolution.',
       'Handles corporate legal matters and compliance.'
     ]
   }
 ];
-
+const formatNameForUrl = (name: string) => {
+  return name
+    .split(' ') // Split the name into an array of words
+    .join('-')   // Join the words with hyphens
+    .toLowerCase(); // Convert to lowercase for consistency
+};
 const AboutUsPage = () => {
   const [selectedMember, setSelectedMember] = useState<TeamMember | null>(null);
 
   return (
-    <div className="min-h-screen bg-slate-50 ">
+    <div className="pt-[50px] min-h-screen bg-slate-50">
       {/* Hero Section */}
       <div className="bg-[#24388F] text-white py-16">
         <div className="container mx-auto px-4">
@@ -134,7 +140,7 @@ const AboutUsPage = () => {
           </div>
         </div>
       </div>
-
+  
       {/* Main Content */}
       <div className="container mx-auto px-4 py-12">
         <div className="grid md:grid-cols-2 gap-8 mb-16">
@@ -155,7 +161,7 @@ const AboutUsPage = () => {
           <div className="bg-gray-100 h-64 md:h-[400px] rounded-lg">
             <div className="w-full h-full flex items-center justify-center">
               <Image
-                src="/Chan_Abt.jpg" 
+                src="/Chan_Abt.webp" 
                 alt="About Us" 
                 className="rounded-lg w-full h-full object-cover object-center" 
                 height={1000}
@@ -164,7 +170,7 @@ const AboutUsPage = () => {
             </div>
           </div>
         </div>
-
+  
         {/* Core Values Section */}
         <div className="grid md:grid-cols-4 gap-6 mb-16">
           <Card className="p-6 hover:shadow-lg transition-shadow duration-300">
@@ -176,7 +182,7 @@ const AboutUsPage = () => {
               <p className="text-gray-600">To deliver transformative solutions that drive sustainable growth and create lasting value for our clients.</p>
             </CardContent>
           </Card>
-
+  
           <Card className="p-6 hover:shadow-lg transition-shadow duration-300">
             <CardContent className="p-0 space-y-4">
               <div className="h-12 w-12 bg-blue-50 rounded-full flex items-center justify-center">
@@ -186,7 +192,7 @@ const AboutUsPage = () => {
               <p className="text-gray-600">To be the catalyst for positive change in businesses worldwide through innovative consulting solutions.</p>
             </CardContent>
           </Card>
-
+  
           <Card className="p-6 hover:shadow-lg transition-shadow duration-300">
             <CardContent className="p-0 space-y-4">
               <div className="h-12 w-12 bg-blue-50 rounded-full flex items-center justify-center">
@@ -196,7 +202,7 @@ const AboutUsPage = () => {
               <p className="text-gray-600">Combining legal knowledge with innovative strategies to deliver measurable results.</p>
             </CardContent>
           </Card>
-
+  
           <Card className="p-6 hover:shadow-lg transition-shadow duration-300">
             <CardContent className="p-0 space-y-4">
               <div className="h-12 w-12 bg-blue-50 rounded-full flex items-center justify-center">
@@ -207,7 +213,7 @@ const AboutUsPage = () => {
             </CardContent>
           </Card>
         </div>
-
+  
         {/* Team Section */}
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold mb-8 text-[#24388F]">Our Team of Experts</h2>
@@ -227,14 +233,14 @@ const AboutUsPage = () => {
                   <div className="p-4 md:p-6 space-y-3">
                     <div>
                       <h3 className="font-bold text-lg md:text-xl text-[#24388F] mb-1">{member.name}</h3>
-                      <p className="text-sm md:text-base text-gray-600">{member.position}</p>
+                      <p className="mb-3 text-sm md:text-base text-gray-600">{member.position}</p>
                     </div>
-                    <button 
-                      onClick={() => setSelectedMember(member)}
-                      className="w-full sm:w-auto bg-[#24388F] text-white px-4 py-2 rounded-md hover:bg-opacity-90 transition-colors text-sm md:text-base"
-                    >
-                      About Me
-                    </button>
+                    <Link
+  href={`/about/${formatNameForUrl(member.name)}`}
+  className="mt-4 w-full sm:w-auto bg-[#24388F] text-white px-4 py-2 rounded-md hover:bg-opacity-90 transition-colors text-sm md:text-base"
+>
+  About Me
+</Link>
                   </div>
                 </CardContent>
               </Card>
@@ -242,7 +248,7 @@ const AboutUsPage = () => {
           </div>
         </div>
       </div>
-
+  
       {/* Modal */}
       {selectedMember && (
         <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
@@ -278,13 +284,13 @@ const AboutUsPage = () => {
                     </div>
                   </div>
                 </div>
-
-                {/* Right Content - Image */}
-                <div className="flex items-start justify-center">
+                
+                {/* Right Content */}
+                <div className="w-full flex justify-center">
                   <Image
                     src={selectedMember.imageUrl} 
                     alt={selectedMember.name} 
-                    className="w-full max-w-md rounded-lg" 
+                    className="w-72 h-72 object-cover rounded-lg"
                     height={1000}
                     width={1000}
                   />
@@ -296,6 +302,7 @@ const AboutUsPage = () => {
       )}
     </div>
   );
+  
 };
 
 export default AboutUsPage;
