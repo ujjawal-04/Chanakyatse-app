@@ -9,15 +9,8 @@ type Member = {
   experience: string;
 };
 
-// Define props interface that matches Next.js App Router expectations
-interface PageProps {
-  params: {
-    members: string;
-  };
-}
-
 // Your members data
-const memberss: Member[] = [
+const members: Member[] = [
   {
     name: "Adv. Bindu S. Chettur",
     designation: "Founder and Managing Director",
@@ -80,9 +73,15 @@ const memberss: Member[] = [
   },
 ];
 
+type PageProps = {
+  params: Promise<{ members: string }>;
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
+};
+
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-  const member = memberss.find(
-    (m) => m.name.replace(/\s+/g, '-').toLowerCase() === params.members.toLowerCase()
+  const { members: memberName } = await params;
+  const member = members.find(
+    (m) => m.name.replace(/\s+/g, '-').toLowerCase() === memberName.toLowerCase()
   );
 
   return {
@@ -92,8 +91,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 }
 
 export default async function Page({ params }: PageProps) {
-  const member = memberss.find(
-    (m) => m.name.replace(/\s+/g, '-').toLowerCase() === params.members.toLowerCase()
+  const { members: memberName } = await params;
+  const member = members.find(
+    (m) => m.name.replace(/\s+/g, '-').toLowerCase() === memberName.toLowerCase()
   );
 
   if (!member) {
@@ -112,7 +112,7 @@ export default async function Page({ params }: PageProps) {
             height={400}
           />
         </div>
-        <div className="md:w-2/3 text-center md:text-left">
+        <div className="md:w-2/3 md:pl-8 text-center md:text-left">
           <h1 className="text-4xl font-bold mb-4">{member.name}</h1>
           <p className="text-xl font-semibold mb-4">{member.designation}</p>
           <p className="text-lg leading-relaxed">{member.experience}</p>
