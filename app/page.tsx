@@ -5,14 +5,18 @@ import WorkWithUsLayout from '@/components/reverseSplit'
 import SlidingText from '@/components/slide'
 import { MarqueeDemo } from '@/components/testimonials'
 import Features from '@/components/features'
+import Info from '@/components/info'
 
 
 const Page = () => {
   return (
     <main className="bg-white pt-4 sm:pt-20">
-      <div>
+      <div className='overflow-x-hidden'>
         <div>
           <Split/>
+        </div>
+        <div className='mt-20'>
+          <Info/>
         </div>
         <div className="mt-20 mb-28">
           <Features/>

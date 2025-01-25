@@ -13,7 +13,12 @@ export default function Features() {
         hidden: { opacity: 0 },
         visible: { opacity: 1, transition: { duration: 0.5 } }
       }}
-      className="bg-[#24388F] text-white py-20"
+      className="text-white py-20"
+      style={{
+        backgroundImage: 'url(/small.png)', // Add the path to your image here
+        backgroundSize: 'cover',  // Ensures the image covers the whole section
+        backgroundPosition: 'center', // Centers the image
+      }}
     >
       <div className="container mx-auto px-4">
         <motion.div 
@@ -23,7 +28,7 @@ export default function Features() {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
-           Our Works
+            Our Works
           </h2>
         </motion.div>
 
