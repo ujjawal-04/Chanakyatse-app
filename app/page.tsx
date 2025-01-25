@@ -1,22 +1,18 @@
 import React from 'react'
-import SplitLayout from '@/components/split'
+import Split from '@/components/split'
 import ScrollableCards from '@/components/scrollcards'
 import WorkWithUsLayout from '@/components/reverseSplit'
 import SlidingText from '@/components/slide'
-import { Hero } from '@/components/hero'
 import { MarqueeDemo } from '@/components/testimonials'
 import Features from '@/components/features'
 
 
 const Page = () => {
   return (
-    <main className="bg-white pt-16 sm:pt-20 overflow-x-hidden w-full">
-      <div className="max-w-[1440px] mx-auto">
+    <main className="bg-white pt-4 sm:pt-20">
+      <div>
         <div>
-          <Hero/>
-        </div>
-        <div className="mt-20">
-          <SplitLayout/>
+          <Split/>
         </div>
         <div className="mt-20 mb-28">
           <Features/>
