@@ -34,7 +34,6 @@ const navItems: NavItem[] = [
       { name: 'Articles', href: '/articles' },
     ],
   },
-  { name: 'JOIN US', href: '/join' },
 ]
 
 export default function Navbar() {

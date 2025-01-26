@@ -1,7 +1,7 @@
 "use client"
 
-import { motion } from "framer-motion"
-import { Building2, ArrowRightLeft, Gavel, FileLock } from "lucide-react"
+import { motion } from "framer-motion";
+import { Building2, ArrowRightLeft, Gavel, FileLock } from "lucide-react";
 
 export default function Features() {
   return (
@@ -15,7 +15,7 @@ export default function Features() {
       }}
       className="text-white py-20"
       style={{
-        backgroundImage: "url(small.png)",
+        backgroundColor: "#24388F",
         backgroundSize: "180%",
         backgroundPosition: "center",
       }}
@@ -31,8 +31,8 @@ export default function Features() {
           <h2 className="text-4xl md:text-5xl font-bold mb-4">Our Works</h2>
         </motion.div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto relative">
-          {[
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
+          {[ // Items array with data
             {
               icon: Building2,
               title: "Incorporation of Companies",
@@ -67,27 +67,31 @@ export default function Features() {
               initial={{ y: 100, opacity: 0 }}
               whileInView={{ y: 0, opacity: 1 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: item.delay }}
+              transition={{
+                duration: 1.5,
+                delay: item.delay, // Sequential delay for each item
+              }}
               className="flex flex-col items-center text-center relative"
             >
-              {/* Thought Bubble with Black Border */}
+              {/* Thought Bubble with Pop-Up Effect */}
               <motion.div
                 className="absolute inset-2 bg-white border border-black rounded-[20px] filter blur-sm"
                 style={{
-                  clipPath: "polygon(0% 0%, 96% 2%, 100% 92%, 60% 92%, 90% 100%, 45% 94%, 4% 94%)",
+                  clipPath:
+                    "polygon(0% 0%, 96% 2%, 100% 92%, 60% 92%, 90% 100%, 45% 94%, 4% 94%)",
                 }}
-                initial={{ y: 100, opacity: 0 }}
-                whileInView={{ y: 0, opacity: 1 }}
+                initial={{ scale: 0, opacity: 0 }}
+                whileInView={{ scale: 1, opacity: 1 }}
                 viewport={{ once: true }}
                 transition={{
                   duration: 0.6,
-                  delay: item.delay + 0.1, // Slight delay for sequential effect
+                  delay: item.delay + 0.8, // Slight delay for smoother appearance
                 }}
               />
 
               {/* Content */}
               <div className="relative z-10 p-6">
-                {/* Icon with 360° Rotation on Hover */}
+                {/* Icon with Rotation and Hover Effect */}
                 <motion.div
                   whileHover={{ rotate: 360 }}
                   transition={{ duration: 0.6 }}
@@ -103,5 +107,5 @@ export default function Features() {
         </div>
       </div>
     </motion.section>
-  )
+  );
 }

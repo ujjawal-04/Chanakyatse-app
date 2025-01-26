@@ -4,6 +4,7 @@ import React, { useRef } from 'react';
 import Image from 'next/image';
 import { ArrowUpRight, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useRouter } from 'next/navigation';
+import { motion } from 'framer-motion';
 
 const ScrollableCards: React.FC = () => {
   const router = useRouter();
@@ -57,13 +58,22 @@ const ScrollableCards: React.FC = () => {
     }
   };
 
+  const cardVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.6 }
+    }
+  };
+
   return (
-    <div className="w-full bg-white px-4 md:px-8 relative">
+    <div className="w-full bg-gradient-to-b from-gray-100 to-gray-50 px-4 md:px-8 relative">
       <div className="absolute right-4 -top-14 flex gap-2 z-10 mb-20">
         {/* Left Arrow */}
         <button
           onClick={() => scroll('left')}
-          className="p-3 rounded-full bg-white border border-gray-100 hover:border-gray-200 transition-all duration-200 focus:outline-none"
+          className="p-3 rounded-full bg-white border border-gray-100 shadow-md hover:shadow-lg transition-all duration-200 focus:outline-none"
           aria-label="Scroll left"
         >
           <ChevronLeft size={24} className="text-gray-800" />
@@ -72,22 +82,25 @@ const ScrollableCards: React.FC = () => {
         {/* Right Arrow */}
         <button
           onClick={() => scroll('right')}
-          className="p-3 rounded-full bg-white border border-gray-200 shadow-sm hover:bg-gray-50 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-gray-200"
+          className="p-3 rounded-full bg-white border border-gray-200 shadow-md hover:shadow-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-gray-200"
           aria-label="Scroll right"
         >
           <ChevronRight size={24} className="text-gray-800" />
         </button>
       </div>
 
-      <div 
+      <motion.div 
         ref={scrollContainerRef}
+        initial="hidden"
+        animate="visible"
         className="scrollbar-hide overflow-x-auto -mx-4 md:-mx-8 scroll-smooth"
       >
-        <div className="flex space-x-8 pb-2 px-4 md:px-8">
+        <div className="flex space-x-8 pb-6 px-4 md:px-8">
           {items.map((item, index) => (
-            <div
+            <motion.div
               key={index}
-              className="flex-none w-80 md:w-[450px] transform transition-all duration-500 hover:-translate-y-2 group cursor-pointer rounded-xl overflow-hidden"
+              variants={cardVariants}
+              className="flex-none w-80 md:w-[450px] transform transition-all duration-500 hover:-translate-y-3 group cursor-pointer rounded-xl overflow-hidden shadow-lg bg-white"
               onClick={() => handleCardClick(item.path)}
             >
               <div className="relative aspect-[4/3] overflow-hidden border-2 border-gray-300 rounded-xl">
@@ -100,7 +113,7 @@ const ScrollableCards: React.FC = () => {
                 <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent">
                   <div className="absolute bottom-0 left-0 right-0 p-4">
                     <div className="flex items-center justify-between">
-                      <h3 className="text-xl md:text-3xl font-bold text-white mb-2">
+                      <h3 className="text-xl md:text-3xl font-bold text-white mb-2 tracking-wide">
                         {item.title}
                       </h3>
                       <ArrowUpRight
@@ -119,10 +132,10 @@ const ScrollableCards: React.FC = () => {
                   </div>
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 };

@@ -12,7 +12,7 @@ const SplitLayout = () => {
   return (
     <div ref={sectionRef} className="min-h-screen flex flex-col md:flex-row bg-white">
       {/* Left Image with "Printed" Animation */}
-      <div className="w-full md:w-1/2 relative flex justify-center items-center">
+      <div className="w-full flex justify-center items-center md:w-1/2">
         <motion.div
           className="relative w-full h-full flex items-center justify-center overflow-hidden"
         >
@@ -37,14 +37,14 @@ const SplitLayout = () => {
 
       {/* Right Content with Background Image */}
       <div
-        className="w-full md:w-1/2 bg-white px-2 md:px-2 py-12 flex flex-col justify-center relative bg-cover bg-center"
+        className="w-full flex flex-col md:w-1/2 bg-white px-2 md:px-8 py-12  justify-center relative bg-cover bg-center"
         style={{
           backgroundImage: 'url("/small.jpg")',
           backgroundPosition: 'center left',
         }}
       >
         {/* Text on top of the background image */}
-        <div className="relative inset-0 flex flex-col justify-center items-start z-10" style={{ left: '-10%' }}>
+        <div className="relative inset-0 flex flex-col justify-center items-start z-10 md:left-0 ml-8">
           <motion.h1
             initial={{ y: 50, opacity: 0 }}
             animate={isInView ? { y: 0, opacity: 1 } : { y: 50, opacity: 0 }}
@@ -74,7 +74,7 @@ const SplitLayout = () => {
             animate={isInView ? { y: 0, opacity: 1 } : { y: 50, opacity: 0 }}
             transition={{ duration: 1, ease: 'easeOut', delay: 1.2 }}
             className="font-serif text-xl md:text-xl text-gray-600 mb-8 block"
-            style={{ position: 'relative', left: '5%' }}
+            style={{ position: 'relative', left: '2%' }}
           >
             Our expertise spans incorporation guidance, M&A facilitation, strategic restructuring, and comprehensive legal support including dealing with intellectual property rights disputes and registration. Empower your business with our seasoned team, ensuring sustained growth and success in today&apos;s dynamic marketplace.
           </motion.span>
