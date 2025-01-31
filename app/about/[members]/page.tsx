@@ -30,6 +30,12 @@ const members: Member[] = [
     experience: "Adv. Amjith M Anandhan is a highly skilled and accomplished lawyer with expertise in civil and commercial litigation. with extensive experience in handling complex Legal matters, he has established a reputation for delivering effective legal solutions  to his clients. Throughout his career, Adv. Amjith M Anandhan has successfully represented clients before various High courts, the supreme court, and Tribunals such as The National Company Law Tribunal.) (NCLT) and The National Company Law Tribunal Appellate Tribunal (NCLAT). His deep understanding of the legal system and meticulous approach to case preparation have resulted in favourable outcomes for his clients in diverse litigation scenarios. In addition to his Litigation and dispute resolution practice, Adv. Amjith M. Anandhan has also served as Counsel in arbitrations before prestigious institutions such as the Dubai International Arbitration Centre (DIAC) and the London Court of International Arbitration (LCIA). He possesses a comprehensive understanding of arbitration procedures and strategies, enabling him to effectively advocate for his client’s interests and secure favourable arbitration awards. Adv. Amjith M Anandhan’s commitment to excellence and client satisfaction is reflected in his approach to Legal practice. He combines his in-depth Legal knowledge with strong analytical skills to provide strategic advice and representation to his clients. Known for his strong courtroom presence, persuasive arguments and attention to detail, he consistently delivers exceptional results. With a track record of handling complex litigation cases and successful representation in arbitrations, Adv. Amjith M Anandhan is a trusted Legal professional who strives for excellence and works diligently to protect and advance his client’s interests.",
   },
   {
+    name: "Ashwin Chaturvedi",
+    designation: "Lawyer and Head of Business Strategy",
+    imageUrl: "/Ashwin.webp",
+    experience: "Ashwin is a law graduate holding an integrated B.B.A LL.B (Hons.) degree from India. He has completed various courses in association with Cornell University, New York and received Outstanding (O) grade in Legal Writing. His professional journey includes three years of legal experience in Dubai  gaining valuable experience in all types of legal drafting, client dealing, and cases involving civil, corporate, and personal law. He has also worked with Lex Vid Partners in India wherein he has dealt with cases pertaining to civil and criminal law in district and high courts, Real Estate Regulatory Authority (RERA), Madhya Pradesh State Consumer Disputes Redressal Commission, National Green Tribunal and Madhya Pradesh Electricity Regulatory Commission. His leadership skills shine through his role as the Founder and Managing Director at Grab the Mic,  National All States Head and Legal HR Personnel at Youth India Foundation, where he efficiently managed legal and organizational responsibilities at a national level. Accomplished in public speaking, competitive debating, and content writing, his passion for Model United Nations is evident in various accolades and leadership roles at both national and international conferences, showcasing his meticulous research, public speaking, and diplomatic prowess. He has also worked as an Associate Member with Law Informants and as a Content Developer with Law Mentoring. Ashwin is also the founder of Grab the Mic, a platform for personality development and public speaking courses wherein he has trained numerous individuals in the areas of corporate training, personality development, and public speaking.",
+  },
+  {
     name: "Adv. Ashok GV",
     designation: "Senior Legal Associate",
     imageUrl: "/tst-ask.webp",
@@ -41,18 +47,7 @@ const members: Member[] = [
     imageUrl: "/tst-man.webp",
     experience: "",
   },
-  {
-    name: "Adv. Sindhya S Nair",
-    designation: "Legal Associate",
-    imageUrl: "/Sindhya.webp",
-    experience: "Sindhya is a lawyer with 10 years of PQE primarily focusing on corporate commercial matters. She joined Chanakyatse Consultancy in the year 2022. She has completed Post Graduate Diploma in Air Transport Law and has worked with one of the leading low cost carriers in UAE and with another lead company in the UAE. She has been involved in:- Advising on various aspects of business in UAE, High value sale and purchase deals, Joint ventures, Preparing broad range of commercial agreements, Negotiation of various commercial deals on behalf clients, Drafting DIFC Wills, UAE Wills and India Wills, ADGM Arbitration. In India she has gained experience in criminal litigation as defence counsel and has bagged few remarkable achievements.",
-  },
-  {
-    name: "Ashwin Chaturvedi",
-    designation: "Legal Associate",
-    imageUrl: "/Ashwin.webp",
-    experience: "Ashwin is a law graduate holding an integrated B.B.A LL.B (Hons.) degree from India. He has completed various courses in association with Cornell University, New York and received Outstanding (O) grade in Legal Writing. His professional journey includes three years of legal experience in Dubai  gaining valuable experience in all types of legal drafting, client dealing, and cases involving civil, corporate, and personal law. He has also worked with Lex Vid Partners in India wherein he has dealt with cases pertaining to civil and criminal law in district and high courts, Real Estate Regulatory Authority (RERA), Madhya Pradesh State Consumer Disputes Redressal Commission, National Green Tribunal and Madhya Pradesh Electricity Regulatory Commission. His leadership skills shine through his role as the Founder and Managing Director at Grab the Mic,  National All States Head and Legal HR Personnel at Youth India Foundation, where he efficiently managed legal and organizational responsibilities at a national level. Accomplished in public speaking, competitive debating, and content writing, his passion for Model United Nations is evident in various accolades and leadership roles at both national and international conferences, showcasing his meticulous research, public speaking, and diplomatic prowess. He has also worked as an Associate Member with Law Informants and as a Content Developer with Law Mentoring. Ashwin is also the founder of Grab the Mic, a platform for personality development and public speaking courses wherein he has trained numerous individuals in the areas of corporate training, personality development, and public speaking.",
-  },
+
   {
     name: "Raj Naveen",
     designation: "Senior Finance Expert",
@@ -115,7 +110,7 @@ export default async function Page({ params }: PageProps) {
         <div className="md:w-2/3 md:pl-8 text-center md:text-left">
           <h1 className="text-4xl font-bold mb-4">{member.name}</h1>
           <p className="text-xl font-semibold mb-4">{member.designation}</p>
-          <p className="text-lg leading-relaxed">{member.experience}</p>
+          <p className="text-lg leading-relaxed text-justify">{member.experience}</p>
         </div>
       </div>
     </div>

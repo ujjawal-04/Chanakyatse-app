@@ -2,70 +2,89 @@
 
 import React, { useRef } from 'react';
 import Image from 'next/image';
-import { motion, useInView } from 'framer-motion'; // Correct imports for framer-motion
+import { motion, useInView } from 'framer-motion';
+import Link from 'next/link';
+
 
 const SplitLayout = () => {
-  // Create refs for the section and its elements
   const sectionRef = useRef(null);
-  const isInView = useInView(sectionRef, { once: true });
+  const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
 
   return (
-    <div ref={sectionRef} className="min-h-screen flex flex-col md:flex-row bg-white">
-      {/* Left Content with Background Image */}
-      <div
-        className="w-full md:w-1/2 bg-cover bg-no-repeat px-2 md:px-8 py-12 flex flex-col justify-center relative"
-        style={{
-          backgroundImage: "url('/small.jpg')", // Replace with your actual image path
-          backgroundPosition: "center right", // Slightly shifted to the right
-        }}
+    <div ref={sectionRef} className="min-h-screen flex flex-col md:flex-row bg-gray-50 overflow-hidden relative">
+      {/* Vector Background Elements */}
+      <div className="absolute top-10 left-10 w-32 h-32 bg-blue-200 rounded-full opacity-30"></div>
+      <div className="absolute bottom-10 right-10 w-24 h-24 bg-blue-300 rounded-full opacity-30"></div>
+      
+      {/* Left Content */}
+      <motion.div 
+        className="w-full md:w-1/2 px-12 py-20 flex flex-col justify-center relative"
+        initial={{ scale: 0.95 }}
+        animate={isInView ? { scale: 1 } : {}}
+        transition={{ duration: 0.8 }}
       >
-        {/* Text on top of the background image */}
-        <div className="relative inset-0 flex flex-col justify-center items-start z-10 ml-8">
+        <div 
+          className="absolute inset-0 bg-cover bg-center z-0 opacity-20"
+          style={{ backgroundImage: "url('/small.jpg')" }}
+        />
+        <div className="relative z-10 flex flex-col justify-center items-start max-w-xl mx-auto">
           <motion.h1
-            initial={{ y: 50, opacity: 0 }} // Start below and invisible
-            animate={{ y: isInView ? 0 : 50, opacity: isInView ? 1 : 0 }} // Trigger animations when in view
-            transition={{ duration: 1, ease: 'easeOut', delay: 0.3 }}
-            className="font-bold text-4xl md:text-7xl mb-4"
+            initial={{ y: 50, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 1, ease: "easeOut", delay: 0.3 }}
+            className="font-serif text-5xl md:text-6xl mb-6 text-left text-blue-900 leading-tight text-jus"
           >
-            <motion.span
-              initial={{ y: 50, opacity: 0 }}
-              animate={{ y: isInView ? 0 : 50, opacity: isInView ? 1 : 0 }}
-              transition={{ duration: 0.8, delay: 0.5 }}
-              className="flex flex-col text-teal-400"
-            >
-              Comprehensive Partner for all your
-            </motion.span>
-            <motion.span
-              initial={{ y: 50, opacity: 0 }}
-              animate={{ y: isInView ? 0 : 50, opacity: isInView ? 1 : 0 }}
-              transition={{ duration: 0.8, delay: 0.7 }}
-              className="block text-yellow-400"
-            >
-              Individual and Business Needs in India and UAE
-            </motion.span>
+            Comprehensive Partner for all your Individual & Business Needs in India and UAE
+   
           </motion.h1>
-        </div>
-      </div>
+          <motion.span
+            initial={{ y: 50, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 1, ease: "easeOut", delay: 1 }}
+            className="font-serif text-3xl md:text-4xl text-blue-800 mb-8 block text-left"
+          >
+       
+          </motion.span>
+    <Link href="/services">           <motion.button
+            initial={{ y: 20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 1, ease: "easeOut", delay: 1.5 }}
+            className="bg-blue-800 text-white px-6 py-3 rounded-lg shadow-lg hover:bg-blue-700 transition"
+          >
+            Learn More
+          </motion.button></Link> 
 
-      {/* Right Image with Animation */}
-      <div className="w-full md:w-1/2 relative flex justify-center items-center mt-8 md:mt-0 ml-12">
+        </div>
+      </motion.div>
+
+      {/* Right Image */}
+      <motion.div 
+        className="w-full md:w-1/2 flex items-center justify-center p-8 relative"
+        initial={{ opacity: 0 }}
+        animate={isInView ? { opacity: 1 } : {}}
+        transition={{ duration: 0.5 }}
+      >
         <motion.div
-          initial={{ x: '120%', opacity: 0 }}
-          animate={{ x: isInView ? 0 : '120%', opacity: isInView ? 1 : 0 }} // Animate based on visibility
-          transition={{ duration: 1, ease: 'easeOut' }}
-          className="w-full h-full relative"
-          style={{ transform: 'translateX(30%)' }} // Apply a higher translateX for more shift
+          initial={{ x: '30%', scale: 0.9, rotate: -2 }}
+          animate={isInView ? { x: 0, scale: 1, rotate: 0 } : {}}
+          transition={{ 
+            type: "spring",
+            stiffness: 50,
+            damping: 10,
+            delay: 0.2
+          }}
+          className="relative w-full h-[600px] shadow-2xl overflow-hidden rounded-2xl border-4 border-blue-200"
         >
           <Image
-            src="/logo2.jpg"
-            alt="logo"
-            className="object-contain w-5/6 h-5/6 md:w-2/3 md:h-2/3 border-2 border-black shadow-xl shadow-black"
-            width={2000}
-            height={2000}
+            src="/hero2.jpg"
+            alt="Business illustration"
+            fill
+            className="object-cover rounded-2xl"
+            sizes="(max-width: 768px) 100vw, 50vw"
             priority
           />
         </motion.div>
-      </div>
+      </motion.div>
     </div>
   );
 };

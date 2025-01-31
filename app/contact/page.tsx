@@ -1,176 +1,296 @@
-"use client";
-import React, { useState, useEffect } from "react";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import { ChevronRight } from "lucide-react";
+/* eslint-disable @next/next/no-html-link-for-pages */
+"use client"
 
-const ContactUsPage = () => {
-  const [name, setName] = useState<string>("");
-  const [email, setEmail] = useState<string>("");
-  const [phoneNumber, setPhoneNumber] = useState<string>("");
-  const [subject, setSubject] = useState<string>("");
-  const [date, setDate] = useState<string>("");
-  const [message, setMessage] = useState<string>("");
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+import React, { useState } from "react"
+import { motion } from "framer-motion"
+import { Mail, Phone, MapPin, Clock, CalendarIcon } from "lucide-react"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { useForm } from "react-hook-form"
+import * as z from "zod"
+import { format } from "date-fns"
+import { cn } from "@/lib/utils"
+import { Button } from "@/components/ui/button"
+import { Calendar } from "@/components/ui/calendar"
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
+import { Input } from "@/components/ui/input"
+import { Textarea } from "@/components/ui/textarea"
+import { ToastContainer, toast } from "react-toastify"
+import "react-toastify/dist/ReactToastify.css"
 
-  // Specify the type for the service options array
-  const [serviceOptions, setServiceOptions] = useState<string[]>([]);
+const formSchema = z.object({
+  name: z.string().min(2, { message: "Name must be at least 2 characters." }),
+  email: z.string().email({ message: "Please enter a valid email address." }),
+  phone: z.string().min(10, { message: "Phone number must be at least 10 digits." }),
+  subject: z.string().min(2, { message: "Subject is required." }),
+  date: z.date({
+    required_error: "Please select a date for the appointment.",
+  }),
+  message: z.string().min(10, { message: "Message must be at least 10 characters." }),
+})
 
-  // Populate the service options dynamically
-  useEffect(() => {
-    const subject = [
-      "Crisis Management",
-      "Strategic Restructing",
-      "Full Spectrum Assistance",
-      "Comprehensive Legal Support",
-      "Strategic Financial Partnerships",
-      "Corporate Training For Personality Development",
-    ];
-    setServiceOptions(subject);
-  }, []);
+const ContactPage = () => {
+  const [isSubmitting, setIsSubmitting] = useState(false)
 
-  // Handle form submission with proper type for event
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();  // Prevent the default form submission behavior
-    setIsLoading(true);
+  const form = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      name: "",
+      email: "",
+      phone: "",
+      subject: "",
+      date: undefined,
+      message: "",
+    },
+  })
 
-    const formData = {
-      name,
-      email,
-      phoneNumber,
-      subject,
-      date,
-      message,
-    };
-
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    setIsSubmitting(true)
     try {
       const response = await fetch("/api/sendEmail", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(formData),
-      });
+        body: JSON.stringify(values),
+      })
 
       if (response.ok) {
-        toast.success("Email sent successfully");
+        toast.success("Message sent successfully!")
+        form.reset()
       } else {
-        toast.error("Failed to send email");
+        toast.error("Failed to send message. Please try again.")
       }
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (error) {
-      toast.error("Failed to send email");
-    } finally {
-      setIsLoading(false);
+      toast.error("An error occurred. Please try again later.")
     }
-  };
+    setIsSubmitting(false)
+  }
 
   return (
-    <div className="pt-[50px] min-h-screen bg-slate-50">
+    <div className="min-h-screen bg-white text-gray-800">
+      <ToastContainer position="top-right" autoClose={5000} hideProgressBar={false} />
+      {/* Navigation */}
+
+
       {/* Hero Section */}
-      <div className="bg-[#24388F] text-white py-16">
+      <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="bg-[#24378F] text-white py-20">
         <div className="container mx-auto px-4">
-          <h1 className="text-4xl font-bold text-center mb-4">CONTACT US</h1>
-          <div className="flex items-center justify-center gap-2 text-sm">
-            <span>HOME</span>
-            <ChevronRight size={16} />
-            <span>CONTACT US</span>
+          <motion.h1
+            initial={{ y: 20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            className="text-4xl md:text-5xl font-light mb-6 text-center"
+          >
+            CONTACT US
+          </motion.h1>
+          <motion.p
+            initial={{ y: 20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ delay: 0.2 }}
+            className="text-gray-300 text-center"
+          >
+            Chanakyatse &gt; CONTACT US
+          </motion.p>
+        </div>
+      </motion.div>
+
+      {/* Contact Information */}
+      <div className="py-16 bg-gray-100">
+        <div className="container mx-auto px-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <motion.div
+              initial={{ y: 20, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ delay: 0.1 }}
+              className="bg-white p-6 rounded-lg shadow-sm border border-gray-200"
+            >
+              <MapPin className="w-8 h-8 mb-4 text-[#24378F]" />
+              <h3 className="text-lg font-semibold mb-2 text-[#24378F]">Location</h3>
+              <p className="text-gray-600">#301, Al Serkal 2, Port Saeed Road, Airport Road, Deira, Dubai</p>
+            </motion.div>
+
+            <motion.div
+              initial={{ y: 20, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ delay: 0.2 }}
+              className="bg-white p-6 rounded-lg shadow-sm border border-gray-200"
+            >
+              <Phone className="w-8 h-8 mb-4 text-[#24378F]" />
+              <h3 className="text-lg font-semibold mb-2 text-[#24378F]">Contact</h3>
+              <p className="text-gray-600">+91 96330 37870</p>
+              <p className="text-gray-600">+971 54 477 8569</p>
+            </motion.div>
+
+            <motion.div
+              initial={{ y: 20, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ delay: 0.3 }}
+              className="bg-white p-6 rounded-lg shadow-sm border border-gray-200"
+            >
+              <Mail className="w-8 h-8 mb-4 text-[#24378F]" />
+              <h3 className="text-lg font-semibold mb-2 text-[#24378F]">Email</h3>
+              <p className="text-gray-600">contact@chanakyatse.com</p>
+            </motion.div>
+
+            <motion.div
+              initial={{ y: 20, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ delay: 0.4 }}
+              className="bg-white p-6 rounded-lg shadow-sm border border-gray-200"
+            >
+              <Clock className="w-8 h-8 mb-4 text-[#24378F]" />
+              <h3 className="text-lg font-semibold mb-2 text-[#24378F]">Visit Between</h3>
+              <p className="text-gray-600">Mon - Fri : 9:00-5.00</p>
+            </motion.div>
           </div>
         </div>
       </div>
 
-      {/* Contact Form */}
-      <div className="container mx-auto px-4 py-12">
-        <div className="bg-white p-8 rounded-lg shadow-lg">
-          <ToastContainer />
-          <form className="space-y-4" onSubmit={handleSubmit}>
+      {/* Contact Form and Map */}
+      <div className="py-16 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
             <div>
-              <label htmlFor="name" className="block text-sm font-medium text-gray-700">Name</label>
-              <input
-                id="name"
-                name="name"
-                placeholder="Enter your name"
-                required
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                className="block w-full py-2 px-3 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
-              />
+              <h2 className="text-3xl font-light mb-6 text-[#24378F]">Get In Touch WITH US</h2>
+              <p className="text-gray-600 mb-8">Contact us Today for Expert Guidance</p>
+              <Form {...form}>
+                <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+                  <FormField
+                    control={form.control}
+                    name="name"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Name*</FormLabel>
+                        <FormControl>
+                          <Input placeholder="Your Name" {...field} className="border-[#24378F] focus:ring-[#24378F]" />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name="email"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Email*</FormLabel>
+                        <FormControl>
+                          <Input
+                            placeholder="your mail id"
+                            {...field}
+                            className="border-[#24378F] focus:ring-[#24378F]"
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name="phone"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Phone*</FormLabel>
+                        <FormControl>
+                          <Input
+                            placeholder="+Phone Number"
+                            {...field}
+                            className="border-[#24378F] focus:ring-[#24378F]"
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name="subject"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Subject*</FormLabel>
+                        <FormControl>
+                          <Input placeholder="Subject" {...field} className="border-[#24378F] focus:ring-[#24378F]" />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name="date"
+                    render={({ field }) => (
+                      <FormItem className="flex flex-col">
+                        <FormLabel>Appointment Date</FormLabel>
+                        <Popover>
+                          <PopoverTrigger asChild>
+                            <FormControl>
+                              <Button
+                                variant={"outline"}
+                                className={cn(
+                                  "w-full pl-3 text-left font-normal border-[#24378F]",
+                                  !field.value && "text-muted-foreground",
+                                )}
+                              >
+                                {field.value ? format(field.value, "PPP") : <span>Pick a date</span>}
+                                <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
+                              </Button>
+                            </FormControl>
+                          </PopoverTrigger>
+                          <PopoverContent className="w-auto p-0" align="start">
+                            <Calendar
+                              mode="single"
+                              selected={field.value}
+                              onSelect={field.onChange}
+                              disabled={(date) => date < new Date() || date < new Date("1900-01-01")}
+                              initialFocus
+                            />
+                          </PopoverContent>
+                        </Popover>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name="message"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Message</FormLabel>
+                        <FormControl>
+                          <Textarea
+                            placeholder="Write Your Message..."
+                            {...field}
+                            className="border-[#24378F] focus:ring-[#24378F]"
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <Button type="submit" disabled={isSubmitting} className="bg-[#24378F] hover:bg-[#1c2a6f] text-white">
+                    {isSubmitting ? "Sending..." : "Send a message"}
+                  </Button>
+                </form>
+              </Form>
             </div>
-            <div>
-              <label htmlFor="email" className="block text-sm font-medium text-gray-700">Email</label>
-              <input
-                id="email"
-                name="email"
-                placeholder="Enter your Email"
-                required
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="block w-full py-2 px-3 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
-              />
+            <div className="bg-gray-200 rounded-lg overflow-hidden h-[400px]">
+              <iframe
+                src="https://maps.google.com/maps?q=Chanakyatse%20Consultancy%2C%20Dubai&t=m&z=10&output=embed&iwloc=near"
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
+                allowFullScreen={false}
+                loading="lazy"
+              ></iframe>
             </div>
-            <div>
-              <label htmlFor="phoneNumber" className="block text-sm font-medium text-gray-700">Phone Number</label>
-              <input
-                id="phoneNumber"
-                name="phoneNumber"
-                placeholder="Enter your phone number"
-                required
-                value={phoneNumber}
-                onChange={(e) => setPhoneNumber(e.target.value)}
-                className="block w-full py-2 px-3 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
-              />
-            </div>
-            <div>
-              <label htmlFor="subject" className="block text-sm font-medium text-gray-700">Select Subject</label>
-              <select
-                id="subject"
-                name="subject"
-                required
-                value={subject}
-                onChange={(e) => setSubject(e.target.value)}
-                className="block w-full py-2 px-3 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
-              >
-                <option value="">Choose</option>
-                {serviceOptions.map((option, index) => (
-                  <option key={index} value={option}>{option}</option>
-                ))}
-              </select>
-            </div>
-            <div>
-              <label htmlFor="date" className="block text-sm font-medium text-gray-700">Select Date</label>
-              <input
-                type="date"
-                id="date"
-                name="date"
-                required
-                value={date}
-                onChange={(e) => setDate(e.target.value)}
-                className="block w-full py-2 px-3 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
-              />
-            </div>
-            <div>
-              <label htmlFor="message" className="block text-sm font-medium text-gray-700">Your Message</label>
-              <input
-                id="message"
-                name="message"
-                placeholder="Enter your Message"
-                required
-                value={message}
-                onChange={(e) => setMessage(e.target.value)}
-                className="block w-full py-8 px-3 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
-              />
-            </div>
-            <button
-              type="submit"
-              className="w-full bg-[#24388F] text-white py-2 px-4 rounded-md hover:bg-blue-600 transition duration-300"
-              disabled={isLoading}
-            >
-              {isLoading ? "Sending..." : "Submit"}
-            </button>
-          </form>
+          </div>
         </div>
       </div>
-    </div>
-  );
-};
 
-export default ContactUsPage;
+    </div>
+  )
+}
+
+export default ContactPage
+

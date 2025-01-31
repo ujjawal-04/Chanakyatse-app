@@ -4,15 +4,15 @@ import React, { useRef } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { motion, useInView } from 'framer-motion';
-
+import mamasolo from "@/public/mamsolo.jpg"
 const SplitLayout = () => {
   const sectionRef = useRef(null);
   const isInView = useInView(sectionRef, { once: true }); // Trigger animation once
 
   return (
-    <div ref={sectionRef} className="min-h-screen flex flex-col md:flex-row bg-white">
+    <div ref={sectionRef} className=" flex flex-col md:flex-row bg-white">
       {/* Left Image with "Printed" Animation */}
-      <div className="w-full flex justify-center items-center md:w-1/2">
+      <div className="w-full flex justify-center items-center md:w-1/2 px-4 sm:px-0">
         <motion.div
           className="relative w-full h-full flex items-center justify-center overflow-hidden"
         >
@@ -25,9 +25,9 @@ const SplitLayout = () => {
           />
           {/* Image */}
           <Image
-            src="/Adv-Binschet.webp"
+            src={mamasolo}
             alt="Adv Binschet"
-            className="mt-10 object-contain w-3/4 h-3/4 relative z-10"
+            className="mt-10 object-contain w-3/4 h-auto sm:h-3/4 md:w-full md:h-auto relative z-10"
             width={2000}
             height={2000}
             priority
@@ -37,35 +37,35 @@ const SplitLayout = () => {
 
       {/* Right Content with Background Image */}
       <div
-        className="w-full flex flex-col md:w-1/2 bg-white px-2 md:px-8 py-12  justify-center relative bg-cover bg-center"
+        className="w-full flex flex-col md:w-1/2 bg-white px-4 sm:px-8 py-12 justify-center relative bg-cover bg-center"
         style={{
           backgroundImage: 'url("/small.jpg")',
           backgroundPosition: 'center left',
         }}
       >
         {/* Text on top of the background image */}
-        <div className="relative inset-0 flex flex-col justify-center items-start z-10 md:left-0 ml-8">
+        <div className="relative inset-0 flex flex-col justify-center items-start z-10 md:left-0 ml-2 sm:ml-8">
           <motion.h1
             initial={{ y: 50, opacity: 0 }}
             animate={isInView ? { y: 0, opacity: 1 } : { y: 50, opacity: 0 }}
             transition={{ duration: 1, ease: 'easeOut', delay: 0.5 }}
-            className="font-bold text-4xl md:text-4xl mb-4"
+            className="font-bold text-2xl sm:text-4xl mb-4"
           >
             <motion.span
               initial={{ y: 50, opacity: 0 }}
               animate={isInView ? { y: 0, opacity: 1 } : { y: 50, opacity: 0 }}
               transition={{ duration: 0.8, delay: 0.6 }}
-              className="font-serif text-2xl flex flex-col text-teal-400"
+              className="font-serif text-xl sm:text-3xl flex flex-col text-blue-800"
             >
-              Chanakyatse Consultancy
+            CHANAKYATSE CONSULTANCY   
             </motion.span>
             <motion.span
               initial={{ y: 50, opacity: 0 }}
               animate={isInView ? { y: 0, opacity: 1 } : { y: 50, opacity: 0 }}
               transition={{ duration: 0.8, delay: 0.7 }}
-              className="font-light text-3xl flex flex-col text-sky-400"
+              className="font-light text-lg sm:text-2xl flex flex-col text-blue-600"
             >
-              guides you through corporate intricacies,<br /> offering comprehensive services<br /> from inception to expansion.
+    We are your trusted partner for navigating complex legal landscapes, offering expert solutions tailored to both personal and business needs.
             </motion.span>
           </motion.h1>
 
@@ -73,10 +73,10 @@ const SplitLayout = () => {
             initial={{ y: 50, opacity: 0 }}
             animate={isInView ? { y: 0, opacity: 1 } : { y: 50, opacity: 0 }}
             transition={{ duration: 1, ease: 'easeOut', delay: 1.2 }}
-            className="font-serif text-xl md:text-xl text-gray-600 mb-8 block"
+            className="font-serif text-base sm:text-xl text-gray-600 mb-8 block"
             style={{ position: 'relative', left: '2%' }}
           >
-            Our expertise spans incorporation guidance, M&A facilitation, strategic restructuring, and comprehensive legal support including dealing with intellectual property rights disputes and registration. Empower your business with our seasoned team, ensuring sustained growth and success in today&apos;s dynamic marketplace.
+           Our expertise lies in drafting, reviewing, and vetting legal documents and agreements with precision, while offering dedicated legal assistance through retainerships, ensuring businesses receive consistent, round-the-clock legal support. We assist with business setup, compliance, and corporate structuring, while also addressing personal and civil legal matters. Our services extend to managing disputes through litigation, mediation, and arbitration, along with providing expert legal opinions and reliable 24/7 legal advice. Empower your business with our seasoned team, ensuring sustained growth and success in today’s dynamic marketplace.
           </motion.span>
 
           <motion.div
@@ -86,8 +86,8 @@ const SplitLayout = () => {
           >
             <Link
               href="/services"
-              className="bg-teal-800 text-white py-3 px-16 rounded-full inline-flex items-center justify-center text-lg font-semibold hover:bg-blue-400 hover:text-teal-400 transition-all duration-300 ease-in-out"
-              style={{ position: 'relative', left: '70%' }}
+              className="bg-blue-800 text-white py-2 sm:py-3 px-10 sm:px-16 rounded-full inline-flex items-center justify-center text-sm sm:text-lg font-semibold hover:bg-blue-400 hover:text-teal-400 transition-all duration-300 ease-in-out"
+              style={{ position: 'relative', left: '50%' }}
             >
               View All
             </Link>

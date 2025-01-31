@@ -22,7 +22,7 @@ const navItems: NavItem[] = [
     dropdown: [
       { name: 'Adv. Bindu S. Chettur', href: 'https://binduschettur.com/' },
       { name: 'MSA', href: 'https://binduschettur.com/mohamed-salman-advocate-legal-consultants/' },
-      { name: 'Lamer Capital Ltd', href: 'https://chanakyatse.com/lamer-capital-ltd/' },
+      { name: 'Lamer Capital Ltd', href: 'https://lamercapital.com/' },
     ],
   },
   {
@@ -127,7 +127,7 @@ export default function Navbar() {
           <div className="flex items-center justify-between h-16 sm:h-20">
             <Link href="/" className="flex items-center space-x-2">
               <Image
-                src="/logo.jpg"
+                src="/logo.svg"
                 alt="Chanakyatse Consultancy"
                 width={250}
                 height={160}

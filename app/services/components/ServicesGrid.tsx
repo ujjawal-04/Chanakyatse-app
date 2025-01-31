@@ -8,7 +8,7 @@ export default function ServicesGrid({ services }: { services: Service[] }) {
   const [hoveredService, setHoveredService] = useState<number | null>(null);
 
   return (
-    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 relative z-10">
+    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 relative z-10 justify-center">
       {services.map((service) => (
         <div 
           key={service.id} 
@@ -49,7 +49,7 @@ export default function ServicesGrid({ services }: { services: Service[] }) {
             <div className="absolute inset-0 h-full w-full rounded-xl bg-gradient-to-br from-[#24388F] to-[#24388F]/90 px-8 text-white [transform:rotateY(180deg)] [backface-visibility:hidden] overflow-y-auto">
               <div className="flex min-h-full flex-col items-center justify-center py-8">
                 <h3 className="text-2xl font-bold text-center mb-6">{service.title}</h3>
-                <p className="text-center text-sm leading-relaxed">
+                <p className="text-justify text-sm leading-relaxed ">
                   {service.description}
                 </p>
               </div>

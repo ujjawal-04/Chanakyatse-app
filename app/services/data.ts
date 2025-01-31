@@ -1,89 +1,87 @@
 export interface Service {
-    id: number;
-    title: string;
-    imageUrl: string;
-    description: string;
+  id: number;
+  title: string;
+  imageUrl: string;
+  description: string;
+}
+
+export const services: Service[] = [
+  {
+    id: 1,
+    title: "Drafting & Writing of Agreements",
+    imageUrl: "https://img.freepik.com/free-photo/corporate-business-handshake-business-partners_53876-104764.jpg",
+    description: "Our firm excels in drafting and reviewing agreements tailored to your needs. From commercial contracts and partnership agreements to NDAs or family settlement agreements, our legal experts ensure every document is precise, compliant with relevant laws and customized to protect your interests."
+  },
+  {
+    id: 2,
+    title: "Legal Advice & Legal Opinions",
+    imageUrl: "https://img.freepik.com/free-photo/business-people-blue-background_53876-101889.jpg",
+    description: "We provide tailored legal advice and formal opinions to address diverse legal needs. Our advice offers practical, actionable solutions for challenges like disputes, compliance, and contracts, while our detailed opinions deliver in-depth analysis of complex legal matters, assessing risks and clarifying positions. With our expertise, you can navigate legal complexities confidently and make informed decisions."
+  },
+  {
+    id: 3,
+    title: "Mergers and Acquisitions",
+    imageUrl: "https://img.freepik.com/free-photo/millennial-asia-businessmen-businesswomen-meeting-brainstorming-ideas-about-new-paperwork-project-colleagues-working-together-planning-success-strategy-enjoy-teamwork-small-modern-night-office_7861-2386.jpg",
+    description: "We provide expert guidance through every stage of mergers and acquisitions. From due diligence and negotiation to structuring and compliance, our team ensures that all aspects of the transaction are handled with precision. With experience in managing complex deals across industries, we focus on protecting your interests, and ensuring a smooth process."
+  },
+  {
+    id: 4,
+    title: "Succession and Family Wealth Planning",
+    imageUrl: "https://img.freepik.com/free-photo/group-casually-dressed-business-people-discussing-ideas-office_7861-1634.jpg",
+    description: "We help individuals and families plan for the future with clear and effective strategies. From drafting wills and creating trusts to structuring asset transfers, we ensure a smooth and secure distribution of wealth. Our focus is on minimizing disputes, safeguarding assets and addressing the unique needs of each family while ensuring compliance with legal requirements. We're here to help you safeguard your financial legacy for generations to come."
+  },
+  {
+    id: 5,
+    title: "DIFC and ADGM Representation",
+    imageUrl: "https://img.freepik.com/free-photo/grey-marble-column-details-building_1359-886.jpg",
+    description: "We provide expert legal representation in the Dubai International Financial Centre (DIFC) and Abu Dhabi Global Market (ADGM) courts. Our seasoned team handles a range of disputes, including commercial, civil, and financial cases, with a deep understanding of the unique laws and procedures in these courts. We focus on protecting your interests with practical strategies and effective advocacy, ensuring your case is handled with the expertise and attention it deserves."
+  },
+  {
+    id: 6,
+    title: "Intellectual Property Rights",
+    imageUrl: "https://img.freepik.com/free-photo/close-up-judge-with-golden-rings-gavel_23-2148230762.jpg",
+    description: "We assist businesses and individuals in protecting their intellectual property through expert legal guidance. Our services include the registration of trademarks, copyrights, and patents, ensuring your rights are secured under the law. With a focus on preserving the value of your intellectual property, we work to ensure your rights are enforced and your innovations remain protected."
+  },
+  {
+    id: 7,
+    title: "DIFC Wills",
+    imageUrl: "https://img.freepik.com/free-photo/business-work-concept_1388-71.jpg",
+    description: "We assist individuals in drafting and registering DIFC wills, ensuring your assets are distributed according to your wishes. With extensive experience in DIFC regulations, we guide you through the process, providing clarity and legal security for your family and beneficiaries."
+  },
+  {
+    id: 8,
+    title: "Cross Jurisdictional Cases",
+    imageUrl: "https://img.freepik.com/free-photo/court-hammer-books-judgment-law-concept_144627-30452.jpg",
+    description: "We specialize in handling complex cross-jurisdictional cases with extensive experience navigating legal systems in multiple countries. Our expertise spans matters involving both UAE and international jurisdictions, including India, ensuring efficient coordination and compliance with applicable laws. Whether it's a commercial dispute, family matter, or regulatory issue, we provide tailored solutions to resolve cases effectively across borders."
+  },
+  {
+    id: 9,
+    title: "Applying Indian Laws in UAE",
+    imageUrl: "https://img.freepik.com/free-photo/handshake-close-up-executives_1098-1384.jpg",
+    description: "We specialize in cases where Indian laws need to be applied within UAE's legal framework. With extensive experience in personal laws such as divorce, inheritance, and succession, we bridge the gap between the legal systems of both countries. Our team ensures legal processes are managed smoothly and in line with the regulations of both countries, offering solutions customized to each client's unique needs."
+  },
+  {
+    id: 10,
+    title: "Trust and Foundation",
+    imageUrl: "https://img.freepik.com/free-photo/stack-coins-document-dark-surface_1150-17607.jpg",
+    description: "We provide expert guidance in establishing trusts and foundations in the UAE, offering customized solutions to suit your specific needs and objectives. Our knowledgeable team supports you at every stage, ensuring full compliance with UAE regulations while delivering strategies aligned with your vision."
+  },
+  {
+    id: 11,
+    title: "License Advisory and Procurement",
+    imageUrl: "https://img.freepik.com/free-photo/hand-using-laptop-computer-with-virtual-screen-document-online-approve-paperless-quality-assurance-erp-management-concept_616485-61.jpg",
+    description: "We provide end-to-end licensing advisory services for businesses in the UAE, delivering expert guidance to simplify the process of obtaining the required licenses tailored to your specific business activities. From initial evaluation and documentation to application submission and final issuance, we ensure a hassle-free experience while fully complying with UAE regulations."
+  },
+  {
+    id: 12,
+    title: "Strategic Restructuring",
+    imageUrl: "https://plus.unsplash.com/premium_photo-1672855928381-c237c6d74760?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    description: "We assist businesses in navigating strategic restructuring to improve efficiency and meet evolving market needs. Our services include reviewing existing structures, reorganizing operations, and managing liabilities while ensuring full compliance with legal and regulatory frameworks."
+  },
+  {
+    id: 13,
+    title: "Incorporation of Companies",
+    imageUrl: "https://plus.unsplash.com/premium_photo-1664391640938-a62e7845a05f?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    description: "We assist in setting up companies across various jurisdictions, including UAE Mainland, Free Zones, ADGM, DIFC, and offshore locations like India and Singapore. We handle all aspects of the incorporation process, from preparing legal documents to ensuring compliance with local regulations. Our team works closely with clients to choose the right structure for their business, making the setup process as efficient as possible."
   }
-  
-  export const services: Service[] = [
-    {
-        id: 1,
-        title: "Incorporation of Companies",
-        imageUrl: "https://img.freepik.com/free-photo/corporate-business-handshake-business-partners_53876-104764.jpg",
-        description: "At Chanakyatse, we specialize in company incorporation services. From UAE's ADGM, DIFC, Mainland, and Freezone to offshore setups in Singapore and India, our legal experts ensure compliance and strategic advantage. Experience a hassle-free, legally sound incorporation process tailored to your needs."
-      },
-      {
-        id: 2,
-        title: "Mergers and Acquisitions",
-        imageUrl: "https://img.freepik.com/free-photo/business-people-blue-background_53876-101889.jpg",
-        description: "Cementing our expertise in mergers and acquisitions, we stand as a trusted advisor for businesses negotiating complex deals. With a track record of representing major players and negotiating with industry leaders, our seasoned team employs strategic insight and meticulous attention to detail to ensure the most ideal outcomes."
-      },
-      {
-        id: 3,
-        title: "Strategic Restructuring",
-        imageUrl: "https://img.freepik.com/free-photo/chess-game-business-strategy-concept_53876-13393.jpg",
-        description: "Change is the only constant in business, and sometimes, strategic restructuring becomes imperative for sustained growth. Chanakyatse Consultancy excels in crafting and implementing tailored restructuring plans that optimize resources, enhance operational efficiency, and position businesses for long-term success."
-      },
-      {
-        id: 4,
-        title: "Comprehensive Legal Support",
-        imageUrl: "https://img.freepik.com/free-photo/millennial-asia-businessmen-businesswomen-meeting-brainstorming-ideas-about-new-paperwork-project-colleagues-working-together-planning-success-strategy-enjoy-teamwork-small-modern-night-office_7861-2386.jpg",
-        description: "Our adept legal team assists businesses in maneuvering through corporate law, compliance, and regulatory hurdles. From contract negotiations to dispute resolution, we offer expert counsel to safeguard client interests, focusing on India and the UAE."
-      },
-      {
-        id: 5,
-        title: "Intellectual Property Rights",
-        imageUrl: "https://img.freepik.com/free-photo/large-group-people-black-lives-matter-protest-focus-is-black-man-holding-placard-with-please-i-can-t-breathe-inscription_637285-7104.jpg",
-        description: "Our firm specializes in Intellectual Property Rights (IPR) registration, safeguarding your innovations and creations through comprehensive legal protection. Additionally, we excel in handling IPR violation, ensuring your rights are upheld and infringements are swiftly addressed."
-      },
-      {
-        id: 6,
-        title: "DIFC and ADGM Courts",
-        imageUrl: "https://img.freepik.com/free-photo/grey-marble-column-details-building_1359-886.jpg",
-        description: "With unparalleled expertise, we offer comprehensive legal representation services in the Dubai International Financial Centre (DIFC) and Abu Dhabi Global Market (ADGM) Courts, committed to providing the best representation and achieving optimal results for our clients."
-      },
-      {
-        id: 7,
-        title: "Succession Planning",
-        imageUrl: "https://img.freepik.com/free-photo/group-casually-dressed-business-people-discussing-ideas-office_7861-1634.jpg",
-        description: "We specialize in comprehensive succession planning services tailored to meet the unique needs of each client. With a proven track record of guiding businesses through smooth transitions, we offer strategic advice and meticulous planning to ensure a seamless transition of leadership and assets."
-      },
-      {
-        id: 8,
-        title: "DIFC Wills",
-        imageUrl: "https://img.freepik.com/free-photo/business-work-concept_1388-71.jpg",
-        description: "We specialize in providing expert assistance with DIFC wills and probate matters, ensuring your assets are protected and your estate is handled with care. Whether you're a resident or a non-Muslim investor, trust us for tailored solutions to safeguard your assets."
-      },
-      {
-        id: 9,
-        title: "Family Wealth Planning",
-        imageUrl: "https://img.freepik.com/free-photo/portrait-cute-little-girl-putting-money-pink-piggy-bank-save-new-toy-her-her-small-brother_662251-568.jpg",
-        description: "We offer comprehensive family wealth planning services designed to secure your financial legacy for generations to come. From estate planning to asset protection and intergenerational wealth transfer, we provide holistic solutions that prioritize your family's prosperity."
-      },
-      {
-        id: 10,
-        title: "License Advisory and Procurement",
-        imageUrl: "https://img.freepik.com/free-photo/hand-using-laptop-computer-with-virtual-screen-document-online-approve-paperless-quality-assurance-erp-management-concept_616485-61.jpg",
-        description: "We provide comprehensive advisory services for businesses in the UAE, offering expert guidance on the necessary licenses tailored to your desired activities. From initial assessment to application and procurement, we streamline the licensing process, ensuring compliance with UAE regulations."
-      },
-      {
-        id: 11,
-        title: "Cross Jurisdictional Cases",
-        imageUrl: "https://img.freepik.com/free-photo/close-up-judge-with-golden-rings-gavel_23-2148230762.jpg",
-        description: "We stand at the forefront of addressing cases involving both Indian and UAE jurisdictions, offering invaluable assistance to individuals navigating legal challenges spanning across borders, ensuring your rights and interests are protected every step of the way."
-      },
-      {
-        id: 12,
-        title: "Applying Indian Laws in UAE",
-        imageUrl: "https://img.freepik.com/free-photo/court-hammer-books-judgment-law-concept_144627-30452.jpg",
-        description: "We are among the first and few firms adept at invoking Indian laws, including those governing personal matters like divorce and succession, in the UAE. We specialize in enabling Indian citizens to assert their rights under Indian law while in the UAE."
-      },
-      {
-        id: 13,
-        title: "Trust and Foundation",
-        imageUrl: "https://img.freepik.com/free-photo/handshake-close-up-executives_1098-1384.jpg",
-        description: "We offer expert assistance in the creation of trusts and foundations, providing comprehensive solutions tailored to your specific needs and objectives. Whether you seek to establish a trust for asset protection or a foundation for philanthropic endeavors, our experienced team guides you through every step."
-      }
-  ];
-  
-  
+];
