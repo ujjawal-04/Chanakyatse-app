@@ -190,7 +190,7 @@ const Page = () => {
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="mt-20"
+            className='mt-20'
           >
             <Info />
           </motion.div>
